@@ -3,12 +3,8 @@ package combinatorics;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import factoring.Factorizor;
-import utils.BigUtils;
-import utils.Exp;
-import utils.HashMapBuilder;
+import transcendance.Exp;
 import utils.RootFinder;
 
 /**

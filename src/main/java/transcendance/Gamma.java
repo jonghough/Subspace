@@ -3,9 +3,6 @@ package transcendance;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import utils.BigUtils;
-import utils.Exp;
-
 /**
  *  Gamma function, factorial.
  * @author Jon Hough
@@ -70,7 +67,7 @@ public class Gamma {
 	 */
 	public static BigDecimal gamma(BigDecimal D){
 		if(D.compareTo(new BigDecimal("0.5")) < 0) 
-			return new BigDecimal(Math.PI).divide((BigUtils.BigSin(new BigDecimal(Math.PI).multiply(D)).multiply(gamma(BigDecimal.ONE.subtract(D)))), BigDecimal.ROUND_CEILING);
+			return new BigDecimal(Math.PI).divide((BigTrigonometry.bigSin(new BigDecimal(Math.PI).multiply(D)).multiply(gamma(BigDecimal.ONE.subtract(D)))), BigDecimal.ROUND_CEILING);
  
 		D = D.subtract(BigDecimal.ONE);
 		BigDecimal a = constants[0];

@@ -16,7 +16,6 @@ primes/LucasLehmer.class
 arithmetic/Sigma.class
 primes/Sieve.class
 arithmetic/Mobius.class
-utils/Exp.class
 arithmetic/ContinuedFractions.class
 factoring/PollardRho.class
 ellipticcurves/BigEllipticCurve.class

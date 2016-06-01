@@ -12,11 +12,11 @@
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/arithmetic/Mobius.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/factoring/Factorizor.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/primes/PrimeCount.java
+/Users/jp20151/IdeaProjects/Subspace/src/main/java/transcendance/BigTrigonometry.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/transcendance/Zeta.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/utils/Settings.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/combinatorics/Permutations.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/primes/Sieve.java
-/Users/jp20151/IdeaProjects/Subspace/src/main/java/utils/Exp.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/factoring/PollardRho.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/arithmetic/ContinuedFractions.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/primes/LucasLehmer.java
@@ -27,5 +27,6 @@
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/combinatorics/BellNumbers.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/factoring/PollardPMO.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/combinatorics/Partitions.java
+/Users/jp20151/IdeaProjects/Subspace/src/main/java/transcendance/Exp.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/arithmetic/Totient.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/transcendance/Gamma.java

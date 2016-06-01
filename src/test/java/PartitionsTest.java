@@ -23,11 +23,13 @@ public class PartitionsTest {
 
 	@Test
 	public void estimateTest(){
-		for(int i = 100; i <101; i++){
-			BigDecimal p = Partitions.calculate_HR_Estimate(new BigInteger(String.valueOf(i)));
-			System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~       p = "+p.toString() + " for i = "+i+" ========================");
-		}
+
+			BigDecimal p = Partitions.calculate_HR_Estimate(new BigInteger(String.valueOf(100)));
+			BigInteger diff = p.subtract(new BigDecimal("190568944")).toBigInteger();
+			assertEquals(BigInteger.ZERO, diff);
+			
 	}
+
 	@Test(expected=IllegalArgumentException.class)
 	public void exceptionTest1(){
 		Partitions.generatePartitions(-1);

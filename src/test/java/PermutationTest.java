@@ -2,6 +2,7 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
+import combinatorics.PermutationsGeneric;
 import org.junit.Test;
 
 import combinatorics.Permutations;
@@ -89,5 +90,20 @@ public class PermutationTest {
 	public void test11() {
 		int rank = Permutations.calculateRank(new Integer[] { 2,1,0 });
 		assertEquals("Rank of [2,1,0]", 5, rank);
+	}
+
+	@Test
+	public void test12() {
+		ArrayList<Character[]> permutations = PermutationsGeneric.getLexicographicPermutations(new Character[]{'a', 'b', 'c'});
+		assertArrayEquals(new Character[]{'a','b','c'}, permutations.get(0));
+		assertArrayEquals(new Character[]{'b','a','c'}, permutations.get(2));
+		assertArrayEquals(new Character[]{'c','b','a'}, permutations.get(5));
+	}
+
+	@Test
+	public void test13() {
+		ArrayList<Character[]> permutations = PermutationsGeneric.getLexicographicPermutations(new Character[]{'a', 'b', 'c', 'd', 'e', 'f','g'});
+		assertArrayEquals(new Character[]{'g', 'f', 'e', 'd', 'c', 'b','a'}, permutations.get(5039));
+
 	}
 }

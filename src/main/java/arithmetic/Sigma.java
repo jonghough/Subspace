@@ -11,7 +11,6 @@ import utils.HashMapBuilder;
 
 /**
  * Divisor sum functions.
- * @author Jon Hough
  *
  */
 public class Sigma {

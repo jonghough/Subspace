@@ -7,13 +7,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import factoring.Factorizor;
-import utils.Exp;
+import transcendance.Exp;
 import utils.HashMapBuilder;
 
 /**
  * Calculations of Chebyshev's function, von Mangoldt's function
  * and related functions.
- * @author Jon Hough
  *
  */
 public class Chebyshev {
