@@ -15,11 +15,11 @@
 ## License
 BSD 2-clause “Simplified” License
 
-### Build jar file
+### To build the library
 
-`ant build-jar`
+`mvn clean install`
 
-### Run tests
+### To run unit tests
 
 `mvn test`
 
