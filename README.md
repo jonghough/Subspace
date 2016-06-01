@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/jonghough/Subspace.svg?branch=master)](https://travis-ci.org/jonghough/Subspace)
 # Subspace
 
 ## Math library, written in Java, focusing on number theory and related fields.
@@ -15,11 +16,11 @@
 ## License
 BSD 2-clause “Simplified” License
 
-### Build jar file
+### To build the library
 
-`ant build-jar`
+`mvn clean install`
 
-### Run tests
+### To run unit tests
 
 `mvn test`
 
@@ -64,3 +65,19 @@ returns
  `78498`
  
  This uses the Meissel formula to calculate pi(x). It will probably choke on values much larger than 10 million though.
+
+**Calculate Lexicographically ordered permutations of list of objects (which implement `Comparable`)**
+
+`ArrayList<Character[]> permutations = PermutationsGeneric.getLexicographicPermutations(new Character[]{'a', 'b', 'c'});`
+		
+		
+This returns six permutations:
+		
+		```
+		{'a','b','c'}
+		{'a','c','b'}
+		{'b','a','c'}
+		{'b','c','a'}
+		{'c','a','b'}
+		{'c','b','a'}
+		```
