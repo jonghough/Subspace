@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/jonghough/Subspace.svg?branch=master)](https://travis-ci.org/jonghough/Subspace)
 # Subspace
 
 ## Math library, written in Java, focusing on number theory and related fields.
