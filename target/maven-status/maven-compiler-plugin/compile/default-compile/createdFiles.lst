@@ -15,7 +15,11 @@ primes/Liouville.class
 primes/LucasLehmer.class
 arithmetic/Sigma.class
 primes/Sieve.class
+arithmetic/BernoulliNumbers.class
+arithmetic/Harmonics.class
 arithmetic/Mobius.class
+combinatorics/StirlingNumbers.class
+arithmetic/Rational.class
 arithmetic/ContinuedFractions.class
 factoring/PollardRho.class
 ellipticcurves/BigEllipticCurve.class

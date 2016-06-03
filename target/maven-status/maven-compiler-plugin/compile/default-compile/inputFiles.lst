@@ -17,6 +17,8 @@
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/utils/Settings.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/combinatorics/Permutations.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/primes/Sieve.java
+/Users/jp20151/IdeaProjects/Subspace/src/main/java/arithmetic/Harmonics.java
+/Users/jp20151/IdeaProjects/Subspace/src/main/java/combinatorics/StirlingNumbers.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/factoring/PollardRho.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/arithmetic/ContinuedFractions.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/primes/LucasLehmer.java
@@ -24,6 +26,7 @@
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/combinatorics/PermutationsGeneric.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/ellipticcurves/BigEllipticCurve.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/utils/BigUtils.java
+/Users/jp20151/IdeaProjects/Subspace/src/main/java/arithmetic/BernoulliNumbers.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/combinatorics/BellNumbers.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/factoring/PollardPMO.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/combinatorics/Partitions.java

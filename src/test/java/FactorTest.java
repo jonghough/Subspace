@@ -1,8 +1,10 @@
 import static org.junit.Assert.*;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import factoring.Factorizor;
+import transcendance.Gamma;
 
 public class FactorTest {
 
@@ -24,5 +26,13 @@ public class FactorTest {
 //
 //		assertEquals("Factor list of 8438503049348381100385800049534923490020044110031, size: ", 4, Factorizor.factor(new BigInteger(
 //				"8438503049348381100385800049534923490020044110031"), Factorizor.FactorMethod.RHO).size());
+
+		assertEquals(3, Factorizor.factor(new BigInteger("3024041"), Factorizor.FactorMethod.PMO).size());
+		assertEquals(4, Factorizor.factor(new BigInteger("20492001"), Factorizor.FactorMethod.PMO).size());
+		assertEquals(2, Factorizor.factor(new BigInteger("20492001030307"), Factorizor.FactorMethod.PMO).size());
+		assertEquals(5, Factorizor.factor(new BigInteger("2302048929391113"), Factorizor.FactorMethod.PMO).size());
+		assertEquals(6, Factorizor.factor(new BigInteger("8392894255239922239"), Factorizor.FactorMethod.PMO).size());
+
+
 	}
 }

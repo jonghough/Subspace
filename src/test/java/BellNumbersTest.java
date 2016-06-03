@@ -1,7 +1,11 @@
 import static org.junit.Assert.*;
 
+import arithmetic.BernoulliNumbers;
+import arithmetic.Rational;
 import combinatorics.BellNumbers;
 import org.junit.Test;
+
+import java.util.ArrayList;
 
 
 public class BellNumbersTest {

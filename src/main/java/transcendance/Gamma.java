@@ -1,5 +1,7 @@
 package transcendance;
 
+import utils.RootFinder;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
@@ -60,14 +62,14 @@ public class Gamma {
 
  
 	/**
-	 * Finds an approximation of gamma(D) for BigDecimal D, (sometimes (D-1)!). 
-	 * Uses Lanczos approximation.
+	 * Finds an approximation of Gamma(D) for BigDecimal D, (sometimes (D-1)!).
+	 *
 	 * @param D 
-	 * @return gamma (D) approximation.
+	 * @return lanczos approximation of Gamma(D).
 	 */
-	public static BigDecimal gamma(BigDecimal D){
+	public static BigDecimal lanczosApproximation(BigDecimal D){
 		if(D.compareTo(new BigDecimal("0.5")) < 0) 
-			return new BigDecimal(Math.PI).divide((BigTrigonometry.bigSin(new BigDecimal(Math.PI).multiply(D)).multiply(gamma(BigDecimal.ONE.subtract(D)))), BigDecimal.ROUND_CEILING);
+			return new BigDecimal(Math.PI).divide((BigTrigonometry.bigSin(new BigDecimal(Math.PI).multiply(D)).multiply(lanczosApproximation(BigDecimal.ONE.subtract(D)))), BigDecimal.ROUND_CEILING);
  
 		D = D.subtract(BigDecimal.ONE);
 		BigDecimal a = constants[0];
@@ -82,5 +84,17 @@ public class Gamma {
 								Exp.exp(new BigDecimal("-1")
 								.multiply(t))
 								).multiply(a);
+	}
+
+
+	/**
+	 * Finds an approximation of <i>Gamma(D+1)</i> for BigDecimal D, i.e. for integers <i>D!</i>.
+	 * @param D
+	 * @return stirling approximation of Gamma(D+1)
+	 */
+	public static BigDecimal stirlingApproximation(BigDecimal D){
+		BigDecimal coefficient = RootFinder.squareRoot(new BigDecimal("2").multiply(new BigDecimal(Math.PI)).multiply(D), 2);
+		BigDecimal power = Exp.BigExp(D.divide(Exp.E_PRECISE, 20, BigDecimal.ROUND_HALF_DOWN),D);
+		return coefficient.multiply(power);
 	}
 }

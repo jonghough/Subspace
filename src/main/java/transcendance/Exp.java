@@ -14,7 +14,7 @@ import java.math.BigInteger;
 public class Exp {
 
 	/* more precise decimal expansion of e */
-	private static final BigDecimal E_PRECISE =
+	/* default*/ static final BigDecimal E_PRECISE =
 			new BigDecimal("2.7182818284590452353602874713526624977572470936999595749669676277240766303535475945713821785251664274");
    
 	public static final BigInteger TWO = new BigInteger("2");

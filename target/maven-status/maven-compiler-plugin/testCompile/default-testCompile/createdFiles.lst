@@ -3,6 +3,8 @@ PrimeCountTest.class
 FactorTest.class
 PartitionsTest.class
 SigmaTest.class
+StirlingNumbersTest.class
 BellNumbersTest.class
+TotientTest.class
 SieveTest.class
 JacobiTest.class
