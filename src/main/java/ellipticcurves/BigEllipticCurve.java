@@ -10,6 +10,8 @@ import ellipticcurves.EllipticCurve.Point;
 import factoring.Factorizor;
 import factoring.PollardRho;
 import arithmetic.Totient;
+import utils.BigUtils;
+import utils.RootFinder;
 
 /**
  * Class for dealing with Elliptic Curves using BigIntegers rather than 32bit
@@ -197,9 +199,9 @@ public class BigEllipticCurve {
     public static BigInteger factorLenstra(BigInteger N) {
         // choose random values
         final Random random = new Random(System.currentTimeMillis());
-        BigInteger x = new BigInteger(N.bitLength(), random);
-        BigInteger y = new BigInteger(N.bitLength(), random);
-        BigInteger a = new BigInteger(N.bitLength(), random);
+        BigInteger x = new BigInteger("1103");//, random);
+        BigInteger y = new BigInteger("5609");//RootFinder.getRootFloor(N).bitLength(), random);
+        BigInteger a = new BigInteger("2007");//RootFinder.getRootFloor(N).bitLength(), random);
         // calculate b
         BigInteger b = y.multiply(y).subtract(x.pow(3)).subtract(a.multiply(x)).mod(N);
 
