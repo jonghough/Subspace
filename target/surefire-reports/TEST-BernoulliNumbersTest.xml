@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="13" failures="0" name="PermutationTest" time="0.01" errors="0" skipped="0">
+<testsuite tests="1" failures="0" name="BernoulliNumbersTest" time="0" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib"/>
@@ -63,17 +63,5 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="PermutationTest" name="test10" time="0.001"/>
-  <testcase classname="PermutationTest" name="test11" time="0"/>
-  <testcase classname="PermutationTest" name="test12" time="0.003"/>
-  <testcase classname="PermutationTest" name="test13" time="0.004"/>
-  <testcase classname="PermutationTest" name="test1" time="0"/>
-  <testcase classname="PermutationTest" name="test2" time="0"/>
-  <testcase classname="PermutationTest" name="test3" time="0.001"/>
-  <testcase classname="PermutationTest" name="test4" time="0.001"/>
-  <testcase classname="PermutationTest" name="test5" time="0"/>
-  <testcase classname="PermutationTest" name="test6" time="0"/>
-  <testcase classname="PermutationTest" name="test7" time="0"/>
-  <testcase classname="PermutationTest" name="test8" time="0"/>
-  <testcase classname="PermutationTest" name="test9" time="0"/>
+  <testcase classname="BernoulliNumbersTest" name="test1" time="0"/>
 </testsuite>

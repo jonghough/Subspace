@@ -7,4 +7,5 @@ StirlingNumbersTest.class
 BellNumbersTest.class
 TotientTest.class
 SieveTest.class
+BernoulliNumbersTest.class
 JacobiTest.class

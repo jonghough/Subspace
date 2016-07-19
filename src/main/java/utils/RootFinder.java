@@ -51,7 +51,7 @@ public class RootFinder {
 	 */
 	public static BigInteger getApproxRoot(BigInteger n) {
 		if (n.compareTo(BigInteger.ZERO) < 0)
-			throw new IllegalArgumentException("Canot use negative integers.");
+			throw new IllegalArgumentException("Cannot use negative integers.");
 		BigDecimal p = RootFinder.squareRoot(new BigDecimal(n
 				.toString()), 10);
 		BigInteger roundUp = p.setScale(0, Settings.ROUNDING)
@@ -68,7 +68,7 @@ public class RootFinder {
 	 */
 	public static BigInteger getRootFloor(BigInteger n) {
 		if (n.compareTo(BigInteger.ZERO) < 0)
-			throw new IllegalArgumentException("Canot use negative integers.");
+			throw new IllegalArgumentException("Cannot use negative integers.");
 		BigDecimal p = RootFinder.squareRoot(new BigDecimal(n
 				.toString()), 10);
 		BigInteger rounddown = p.setScale(0, BigDecimal.ROUND_FLOOR)
@@ -85,7 +85,7 @@ public class RootFinder {
 	 */
 	public static BigInteger getRootCeiling(BigInteger n) {
 		if (n.compareTo(BigInteger.ZERO) < 0)
-			throw new IllegalArgumentException("Canot use negative integers.");
+			throw new IllegalArgumentException("Cannot use negative integers.");
 		BigDecimal p = RootFinder.squareRoot(new BigDecimal(n
 				.toString()),10);
 		BigInteger roundUp = p.setScale(0, BigDecimal.ROUND_CEILING)

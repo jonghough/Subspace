@@ -4,8 +4,17 @@ package transcendance;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
+/**
+ * Utility functions for calculating trigonometric functions for <code>BigDecimal</code> values.
+ *
+ */
 public class BigTrigonometry {
 
+    /**
+     * Calculates sin(D)
+     * @param D
+     * @return
+     */
     public static BigDecimal bigSin(BigDecimal D) {
         BigDecimal pi2 = BigDecimal.valueOf(2 * Math.PI);
         final int scale = 20;
@@ -16,6 +25,11 @@ public class BigTrigonometry {
         return new BigDecimal(Math.sin(ff));
     }
 
+    /**
+     * Calculates cos(D)
+     * @param D
+     * @return
+     */
     public static BigDecimal bigCos(BigDecimal D) {
         BigDecimal pi2 = BigDecimal.valueOf(2 * Math.PI);
         final int scale = 20;
@@ -27,6 +41,11 @@ public class BigTrigonometry {
 
     }
 
+    /**
+     * Calculates tan(D)
+     * @param D
+     * @return
+     */
     public static BigDecimal bigTan(BigDecimal D) {
         BigDecimal sin = bigSin(D);
         BigDecimal cos = bigCos(D);
@@ -42,6 +61,11 @@ public class BigTrigonometry {
 
     }
 
+    /**
+     * Calculates sinh(D)
+     * @param D
+     * @return
+     */
     public static BigDecimal bigSinh(BigDecimal D) {
         try {
             BigDecimal expD = Exp.exp(D);
@@ -54,6 +78,11 @@ public class BigTrigonometry {
         }
     }
 
+    /**
+     * Calculates cosh(D)
+     * @param D
+     * @return
+     */
     public static BigDecimal bigCosh(BigDecimal D) {
         try {
             BigDecimal expD = Exp.exp(D);
@@ -66,6 +95,11 @@ public class BigTrigonometry {
         }
     }
 
+    /**
+     * Calculates tanh(D)
+     * @param D
+     * @return
+     */
     public static BigDecimal BigTanh(BigDecimal D) {
         try {
             return bigSinh(D).divide(bigCosh(D), 20, BigDecimal.ROUND_HALF_DOWN);

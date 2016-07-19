@@ -52,7 +52,7 @@ public class JacobiTest {
 
 	@Test
 	public void test9() {
-		assertEquals("10 / 200 = 1", 1, JacobiSymbol.calculateJacobi(10L, 200L));
+		assertEquals("10 / 200 = 0", 0, JacobiSymbol.calculateJacobi(10L, 200L));
 	}
 
 	@Test

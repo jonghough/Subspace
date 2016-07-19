@@ -6,6 +6,7 @@ utils/RootFinder.class
 arithmetic/Totient.class
 combinatorics/Permutations.class
 factoring/WilliamsPPO.class
+transcendance/Beta.class
 utils/Settings.class
 combinatorics/Partitions.class
 ellipticcurves/EllipticCurve.class

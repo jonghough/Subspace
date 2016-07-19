@@ -165,7 +165,7 @@ public class Exp {
     /**
      * Calculates the base 2 logarithm of a Bigdecimal N.
      * 
-     * @param N BigDecimal to find log
+     * @param X BigDecimal to find log
      * @param scale
      * @return Base 2 logarithm of N.
      */

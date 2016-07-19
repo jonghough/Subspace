@@ -5,10 +5,9 @@ import java.math.BigInteger;
 import utils.RootFinder;
 
 /**
- * Naive Primality Test class. COntains function for performing naive test of
+ * Naive Primality Test class. Contains function for performing naive test of
  * primality. i.e. test division by all integers less than root(n).
- * 
- * @author Jon Hough
+ *
  *
  */
 public class Primality {

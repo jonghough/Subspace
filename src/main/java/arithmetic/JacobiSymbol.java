@@ -103,6 +103,10 @@ public class JacobiSymbol {
 				jacobi *= -1;
 		}
 
+		if(gcd(numerator, denominator) != 1){
+			return 0;
+		}
+
 		while (numerator != 0) {
 
 			if (numerator == 1)
@@ -127,6 +131,9 @@ public class JacobiSymbol {
 		}
 
 		return jacobi;
+	}
 
+	private static long gcd(long a, long b) {
+		return b == 0 ? a : gcd(b, a % b);
 	}
 }
