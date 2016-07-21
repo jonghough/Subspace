@@ -17,6 +17,7 @@
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/transcendance/BigTrigonometry.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/transcendance/Zeta.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/utils/Settings.java
+/Users/jp20151/IdeaProjects/Subspace/src/main/java/combinatorics/CatalanNumbers.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/combinatorics/Permutations.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/primes/Sieve.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/arithmetic/Harmonics.java
@@ -31,6 +32,7 @@
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/arithmetic/BernoulliNumbers.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/combinatorics/BellNumbers.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/factoring/PollardPMO.java
+/Users/jp20151/IdeaProjects/Subspace/src/main/java/combinatorics/SteinerTripleSystem.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/combinatorics/Partitions.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/transcendance/Exp.java
 /Users/jp20151/IdeaProjects/Subspace/src/main/java/arithmetic/Totient.java

@@ -97,7 +97,6 @@ public class Permutations {
 			h = getNextPermutation(h);
 			permlist.add(h);
 		}
-		System.out.println("permlist size is " + permlist.size());
 		return permlist;
 	}
 

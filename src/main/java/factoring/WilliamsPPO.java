@@ -67,7 +67,7 @@ public class WilliamsPPO {
 		BigInteger x = base;
 		BigInteger y = base.multiply(base).subtract(TWO).mod(N);
 		byte[] bx = m.toByteArray();
-		int msbi = 0;
+		int msbi = 0; //most significant bit index
 		byte[] b;
 		if ((bx[0] & 0xFF) == 0) {
 			byte[] b2 = new byte[bx.length - 1];
@@ -78,16 +78,14 @@ public class WilliamsPPO {
 		} else {
 			b = bx;
 		}
-		for (byte bbbb : b) {
-			// System.out.println("be "+Integer.toHexString(bbbb));
-		}
+
 		for (int i = 0; i < b.length; i++) {
 			// first byte
 			if (i == 0) {
 				int j = 8;
 				while (j-- >= 0) {
 					if (((b[0] >> j) & 1) == 1) {
-						msbi = j; // System.out.println("msbi is "+j);
+						msbi = j;
 						break;
 					}
 				}

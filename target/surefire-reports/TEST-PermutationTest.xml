@@ -63,14 +63,14 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="PermutationTest" name="test10" time="0.001"/>
+  <testcase classname="PermutationTest" name="test10" time="0.002"/>
   <testcase classname="PermutationTest" name="test11" time="0"/>
-  <testcase classname="PermutationTest" name="test12" time="0.003"/>
-  <testcase classname="PermutationTest" name="test13" time="0.004"/>
+  <testcase classname="PermutationTest" name="test12" time="0.002"/>
+  <testcase classname="PermutationTest" name="test13" time="0.003"/>
   <testcase classname="PermutationTest" name="test1" time="0"/>
-  <testcase classname="PermutationTest" name="test2" time="0"/>
-  <testcase classname="PermutationTest" name="test3" time="0.001"/>
-  <testcase classname="PermutationTest" name="test4" time="0.001"/>
+  <testcase classname="PermutationTest" name="test2" time="0.001"/>
+  <testcase classname="PermutationTest" name="test3" time="0"/>
+  <testcase classname="PermutationTest" name="test4" time="0.002"/>
   <testcase classname="PermutationTest" name="test5" time="0"/>
   <testcase classname="PermutationTest" name="test6" time="0"/>
   <testcase classname="PermutationTest" name="test7" time="0"/>

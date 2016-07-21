@@ -1,11 +1,13 @@
 PermutationTest.class
 PrimeCountTest.class
-FactorTest.class
 PartitionsTest.class
+SteinerTripleSystemTest.class
+TotientTest.class
+JacobiTest.class
+FactorTest.class
 SigmaTest.class
 StirlingNumbersTest.class
 BellNumbersTest.class
-TotientTest.class
 SieveTest.class
 BernoulliNumbersTest.class
-JacobiTest.class
+CatalanNumbersTest.class

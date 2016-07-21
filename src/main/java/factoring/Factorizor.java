@@ -20,8 +20,7 @@ import utils.RootFinder;
  * Elliptic curves;<br>
  * Algorithms will (attempt to) factor positive BigInteger values.Trial division will only attempt
  * factorization for 32-bit range integers. (i.e. within Integer.MAX_VALUE bound).
- * 
- * @author Jon Hough
+ *
  */
 public class Factorizor {
 
@@ -34,21 +33,12 @@ public class Factorizor {
 	/**
 	 * Factorization method to use.<br>
 	 * <b>RHO</b> = Pollard rho;<br>
-	 * <b>PMO</b> = P minus one;</br>
-	 * <b>PPO</b> = P plus one;</br>
-	 * <b>ECF</b> = Elliptic curve factorization.</br>
+	 * <b>PMO</b> = P minus one;<br>
+	 * <b>PPO</b> = P plus one;<br>
+	 * <b>ECF</b> = Elliptic curve factorization.<br>
 	 *
 	 */
 	public enum FactorMethod{ RHO, PMO, PPO, ECF}
-	
-    /**
-     * Factor N using Pollard Rho algorithm. Finds cycles
-     * 
-     * @param N
-     * @return
-     */
-    
-
     
     
 
@@ -79,7 +69,7 @@ public class Factorizor {
 
  
     /**
-     * Function to retrieve list of posititve integers less than N which are
+     * Function to retrieve list of positive integers less than N which are
      * coprime to N.
      * Algorithm is slow.
      * @param N

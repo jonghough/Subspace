@@ -5,8 +5,9 @@ public class Binomial {
 
 
     public static long coefficient(int n, int k){
+
         if(n < 0 || k < 0)
-            throw new IllegalArgumentException("Arguments must be non-negative");
+            return 0;//throw new IllegalArgumentException("Arguments must be non-negative");
         if(k > n)
             throw new IllegalArgumentException("second argument cannot be larger than the first argument");
 
@@ -21,7 +22,7 @@ public class Binomial {
         long coeff = 1L;
         for (int i = 1; i <= k; i++) {
             coeff *= (n - (k - i));
-            if (coeff < 0) throw new RuntimeException("Long integer overflow!");
+            if (coeff < 0) throw new RuntimeException("Long integer overflow! "+n+", "+k+",   "+i+"  /  "+coeff);
             coeff /= i;
         }
         return coeff;

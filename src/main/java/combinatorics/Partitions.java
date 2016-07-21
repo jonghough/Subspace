@@ -27,6 +27,7 @@ public class Partitions {
     }
 
     /**
+     * Generates partitions of N numbers.
      * @param N
      * @param minSize
      * @return

@@ -4,6 +4,7 @@ combinatorics/PermutationsGeneric.class
 ellipticcurves/BigEllipticCurve$Point.class
 utils/RootFinder.class
 arithmetic/Totient.class
+combinatorics/CatalanNumbers.class
 combinatorics/Permutations.class
 factoring/WilliamsPPO.class
 transcendance/Beta.class
@@ -22,11 +23,13 @@ arithmetic/Mobius.class
 combinatorics/StirlingNumbers.class
 arithmetic/Rational.class
 arithmetic/ContinuedFractions.class
+combinatorics/SteinerTripleSystem$Triple.class
 factoring/PollardRho.class
 ellipticcurves/BigEllipticCurve.class
 utils/BigUtils.class
 factoring/Factorizor.class
 factoring/QuadraticSieve.class
+combinatorics/SteinerTripleSystem.class
 factoring/Factorizor$FactorMethod.class
 transcendance/Zeta.class
 primes/Primality.class

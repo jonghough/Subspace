@@ -11,6 +11,12 @@ import transcendance.Gamma;
  */
 public class PermutationsGeneric {
 
+	/**
+	 *
+	 * @param objArray
+	 * @param <T>
+	 * @return
+	 */
 	public static <T extends Comparable<T>> ArrayList<T[]> getLexicographicPermutations(T[] objArray) {
 		int N = objArray.length;
 		if (N < 1)
@@ -28,7 +34,13 @@ public class PermutationsGeneric {
 		}
 		return permlist;
 	}
-	
+
+	/**
+	 *
+	 * @param permutation
+	 * @param <T>
+	 * @return
+	 */
 	public static <T extends Comparable<T>> T[] getNextPermutation(T[] permutation) {
 		int N = permutation.length;
 		T[] h = permutation.clone();

@@ -83,23 +83,7 @@ public class Exp {
      * @return
      */
     public static BigDecimal BigExp(BigDecimal D, double exponent){
-    	long intPart = (long)exponent;
-    	BigDecimal p1 = exp(D, BigInteger.valueOf(intPart));
-    	BigDecimal p2 = BigDecimal.ONE;
-    	double mantissa = exponent - intPart;
-    	int i = 2;
-    	final int scale = 20;
-    	BigDecimal x = D;
-    	for(i = 1; i < 20; i++){ 
-    		long m = (long)(Math.pow(10.0, i) * mantissa);
-    		m = m&1;
-    		x = RootFinder.nRoot(x, 10, scale);
-    		if(m > 0)
-    			p2 = p2.multiply(exp(x,BigInteger.valueOf(m)));
-    	}
-    	
-    	p1 = p1.multiply(p2);
-    	return p1;
+    	return BigExp(D, new BigDecimal(exponent));
     }
     
     // Taylor series expand the exponential function around val, up to the max term.
@@ -227,7 +211,7 @@ public class Exp {
     /**
      * Calculates an approximation for the number of primes less than X.
      * Approximation is X/Ln(X), asymptotic to pi(X). For small X,
-     * returned vaslue is inaccurate.
+     * returned value is inaccurate.
      * @param X
      * @return approximation of pi(X)
      */
