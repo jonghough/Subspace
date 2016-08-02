@@ -45,4 +45,21 @@ public class BernoulliNumbers {
         return bernoulliList;
     }
 
+    /**
+     * Calculates the nth <i>Bernoulli Number</i> and returns it a s a <code>Rational</code>
+     * object.
+     * @param n
+     * @return
+     */
+    public static Rational calculateNthBernoulliNumber(int n){
+        Rational[] a = new Rational[n + 1];
+        for(int i = 0; i <= n; i++){
+            a[i] = new Rational(1, i + 1);
+            for(int j = i; j >= 1; j--){
+                a[j-1] = a[j-1].subtract(a[j]).multiply(j);
+            }
+        }
+        return a[0];
+
+    }
 }

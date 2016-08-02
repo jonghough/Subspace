@@ -2,6 +2,7 @@ package combinatorics;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Set;
 
 import transcendance.Gamma;
 
@@ -234,6 +235,93 @@ public class Permutations {
 		}
 		return hashSet.size() == permutation.length && sum == size * (size - 1) / 2;
 
+	}
+
+
+	/**
+	 * Generates all cyclic permutation sets on n items. Each permutation set is represented
+	 * as an ArrayList of <code>Integer[]</code>s. <br>
+	 *     for example,
+	 *     <br>
+	 *     <code>generateCyclicPermutationSets(3)</code> will generate 2! sets of permutations,
+	 *     where each permutation is of order 3, as given by: <br>
+	 *     <code>{{[0,1,2], [1,2,0], [2,0,1] },<br> { [1,0,2], [0,2,1], [2,1,0]}}</code>.
+	 * <br>
+	 *     Algorithm taken from <i>The Art of Computer Programming 7.2.1.2, Algorithm C</i>.
+	 * @param n positive integer.
+	 * @return ArrayList of permutation sets.
+	 */
+	public static ArrayList<ArrayList<Integer[]>> generateCyclicPermutationSets(int n) {
+		if(n <= 0) throw new IllegalArgumentException("Argument must be positive.");
+		Integer[] id = new Integer[n];
+		for (int i = 0; i < n; i++) {
+			id[i] = i;
+		}
+
+		int k = n - 1;
+		Integer[] copy = id.clone();
+		ArrayList<ArrayList<Integer[]>> cycles = new ArrayList<ArrayList<Integer[]>>();
+
+		while(k > 0){
+			ArrayList<Integer[]> permSet = new ArrayList<Integer[]>();
+
+			do{
+				permSet.add(copy);
+				k = n - 1;
+				copy = shiftLeft(copy, k, 1);
+			}
+			while(copy[k] != id[k]);
+
+
+			cycles.add(permSet);
+
+			while(copy[k] == id[k] && k > 0){
+				k--;
+				copy = shiftLeft(copy, k, 1);
+			}
+		}
+
+		return cycles;
+
+	}
+
+	/**
+	 * Rotate the first k items of the array left, n places.
+	 * @param array
+	 * @param k
+	 * @param n
+	 * @return
+	 */
+	private static  Integer[] shiftLeft(Integer[] array, int k, int n){
+		Integer[] arr = array.clone();
+		while(n-- > 0) {
+			int tmp = arr[0];
+			for (int i = 0; i < k; i++) {
+				arr[i] = arr[i + 1];
+			}
+			arr[k] = tmp;
+		}
+		return arr;
+	}
+
+	/**
+	 *
+	 * Rotate the first k items of the array right, n places.
+	 * @param array
+	 * @param k
+	 * @param n
+	 * @return
+	 */
+	private static  Integer[] shiftRight(Integer[] array, int k, int n){
+		Integer[] arr = array.clone();
+		while(n-- > 0) {
+			int tmp = arr[k];
+			for (int i = k; i > 0; i--) {
+				arr[i] = arr[i - 1];
+			}
+			arr[0] = tmp;
+		}
+		return arr;
 	}
 
 }

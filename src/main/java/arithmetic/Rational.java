@@ -28,7 +28,7 @@ public final class Rational {
         return b == 0 ? a : gcd(b, (b + a) % b);
     }
 
-    private double toDouble() {
+    public double toDouble() {
         return mNumerator * 1.0 / mDenominator;
     }
 
@@ -41,18 +41,23 @@ public final class Rational {
     }
 
     public Rational add(Rational rational) {
-        return new Rational(this.mNumerator * rational.getDenominator() + this.mDenominator + rational.getNumerator(),
+        return new Rational(this.mNumerator * rational.getDenominator() + this.mDenominator * rational.getNumerator(),
                 this.mDenominator * rational.getDenominator());
     }
 
     public Rational subtract(Rational rational) {
-        return new Rational(this.mNumerator * rational.getDenominator() - this.mDenominator + rational.getNumerator(),
+        return new Rational(this.mNumerator * rational.getDenominator() - this.mDenominator * rational.getNumerator(),
                 this.mDenominator * rational.getDenominator());
     }
 
     public Rational multiply(Rational rational) {
         return new Rational(this.mNumerator * rational.getNumerator(),
                 this.mDenominator * rational.getDenominator());
+    }
+
+    public Rational multiply(int n){
+        return new Rational(this.mNumerator * n,
+                this.mDenominator);
     }
 
     public Rational divide(Rational rational) {
@@ -69,6 +74,7 @@ public final class Rational {
     public Rational negate() {
         return new Rational(-1 * mNumerator, mDenominator);
     }
+
 
     @Override
     public String toString() {

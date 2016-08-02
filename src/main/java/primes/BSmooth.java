@@ -10,14 +10,13 @@ import utils.RootFinder;
 
 /**
  * Class holds B-smooth static methods.
- * @author Jon Hough
  *
  */
 public class BSmooth {
 
     /**
      * Tests if the integer N is B-smooth, for integer B.<br>
-     * That is, all prime factors of N ar eless than B.
+     * That is, all prime factors of N are less than B.
      * @param N
      * @param B
      * @return true if N is B smooth, false otherwise.

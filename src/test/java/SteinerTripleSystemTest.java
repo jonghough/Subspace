@@ -10,12 +10,12 @@ public class SteinerTripleSystemTest {
     @Test
     public void test1(){
         SteinerTripleSystem sts7 = new SteinerTripleSystem(7);
-        System.out.println("STEINER TRIPLE SYSTEM");
-        for(SteinerTripleSystem.Triple t : sts7.getElements()){
-            System.out.println("TRIPLE:");
-            System.out.print("\n"+t.toString()+"\n");
+        assertTrue("The number of blocks should be 7, for STS(7)", sts7.getElements().size() == 7);
+    }
 
-        }
-        System.out.println("Exp >>>>>>>>>>>>>>>>>>>  "+ Exp.BigExp(new BigDecimal("2.71828"), new BigDecimal("3.75")));
+    @Test
+    public void test2(){
+        SteinerTripleSystem sts9 = new SteinerTripleSystem(9);
+        assertTrue("The number of blocks should be 12, for STS(9)", sts9.getElements().size() == 12);
     }
 }

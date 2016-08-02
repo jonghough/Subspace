@@ -141,7 +141,7 @@ public class Exp {
     	BigDecimal p2 = BigDecimal.ONE;
     	BigDecimal mantissa = exponent.subtract(new BigDecimal(intPart));
 
-    	p2 = taylorExpandExp((mantissa).multiply(ln(D,100)), 100);
+    	p2 = taylorExpandExp((mantissa).multiply(ln(D, 200)), 100);
     	p1 = p1.multiply(p2);
     	return p1;
     }
@@ -191,7 +191,7 @@ public class Exp {
      */
     public static BigDecimal ln(BigDecimal X, int scale) {
         if (X.compareTo(BigDecimal.ZERO) <= 0)
-            throw new IllegalArgumentException("X must be positive");
+            throw new IllegalArgumentException("X must be positive "+X.toPlainString());
         return log2(X, scale).divide(LOG_2_E, scale, BigDecimal.ROUND_HALF_DOWN);
     }
 
@@ -220,21 +220,5 @@ public class Exp {
             throw new IllegalArgumentException("X must be positive");
         return X.divide(ln(X,10), 10, BigDecimal.ROUND_HALF_DOWN).toBigInteger();
     }
-    
-    /**
-     * Calculates base^exponent modulo (modulus).
-     * @param base
-     * @param exponent
-     * @param modulus
-     * @return
-     */
-    public static BigInteger expModular(BigInteger base, BigInteger exponent, BigInteger modulus){
-        BigInteger val = BigInteger.ONE;
-        BigInteger counter = val;
-        while(counter.compareTo(exponent) <= 0){
-            val = val.multiply(base);
-            counter = counter.add(BigInteger.ONE).mod(modulus);
-        }
-        return val;
-    }
+
 }

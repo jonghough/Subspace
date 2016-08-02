@@ -1,6 +1,7 @@
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import combinatorics.PermutationsGeneric;
 import org.junit.Test;
@@ -106,4 +107,35 @@ public class PermutationTest {
 		assertArrayEquals(new Character[]{'g', 'f', 'e', 'd', 'c', 'b','a'}, permutations.get(5039));
 
 	}
+
+	@Test
+	public void test14(){
+		Integer[] p = Permutations.calculateUnrank(1, 3);
+
+		assertEquals(new Integer(0), p[0]);
+		assertEquals(new Integer(2), p[1]);
+		assertEquals(new Integer(1), p[2]);
+
+	}
+
+	@Test
+	public void test15(){
+		ArrayList<ArrayList<Integer[]>> perms = Permutations.generateCyclicPermutationSets(3);
+
+		assertEquals(2, perms.size());
+	}
+
+	@Test
+	public void test16(){
+		ArrayList<ArrayList<Integer[]>> perms = Permutations.generateCyclicPermutationSets(6);
+
+		assertEquals(120, perms.size());
+	}
+
+	@Test(expected=IllegalArgumentException.class)
+	public void test17(){
+		Permutations.generateCyclicPermutationSets(-1);
+	}
+
+
 }

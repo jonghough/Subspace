@@ -10,17 +10,20 @@ import java.math.BigInteger;
  */
 public class BigTrigonometry {
 
+    public static final BigDecimal TWO_PI = new BigDecimal(2 * Math.PI);
     /**
      * Calculates sin(D)
      * @param D
      * @return
      */
     public static BigDecimal bigSin(BigDecimal D) {
-        BigDecimal pi2 = BigDecimal.valueOf(2 * Math.PI);
+        if(D.abs().compareTo(TWO_PI) <= 0){
+            return new BigDecimal(Math.sin(Double.parseDouble(D.toString())));
+        }
         final int scale = 20;
-        BigDecimal f = D.divide(pi2, scale, BigDecimal.ROUND_DOWN);
+        BigDecimal f = D.divide(TWO_PI, scale, BigDecimal.ROUND_DOWN);
         BigInteger F = f.toBigInteger();
-        f = new BigDecimal(F).subtract(f).multiply(pi2);
+        f = f.subtract(new BigDecimal(F)).multiply(TWO_PI);
         float ff = f.floatValue();
         return new BigDecimal(Math.sin(ff));
     }
@@ -31,11 +34,13 @@ public class BigTrigonometry {
      * @return
      */
     public static BigDecimal bigCos(BigDecimal D) {
-        BigDecimal pi2 = BigDecimal.valueOf(2 * Math.PI);
+        if(D.abs().compareTo(TWO_PI) <= 0){
+            return new BigDecimal(Math.cos(Double.parseDouble(D.toString())));
+        }
         final int scale = 20;
-        BigDecimal f = D.divide(pi2, scale, BigDecimal.ROUND_DOWN);
+        BigDecimal f = D.divide(TWO_PI, scale, BigDecimal.ROUND_DOWN);
         BigInteger F = f.toBigInteger();
-        f = new BigDecimal(F).subtract(f).multiply(pi2);
+        f = f.subtract(new BigDecimal(F)).multiply(TWO_PI);
         float ff = f.floatValue();
         return new BigDecimal(Math.cos(ff));
 

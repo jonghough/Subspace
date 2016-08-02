@@ -1,9 +1,11 @@
+ExpTest.class
 PermutationTest.class
 PrimeCountTest.class
 PartitionsTest.class
 SteinerTripleSystemTest.class
 TotientTest.class
 JacobiTest.class
+GammaTest.class
 FactorTest.class
 SigmaTest.class
 StirlingNumbersTest.class

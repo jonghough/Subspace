@@ -45,7 +45,6 @@ public class WilliamsPPO {
 
 			if (N.isProbablePrime(99))
 				return N;
-
 		}
 		System.out.println("Factorization failed (PPO): revert to RHO");
 		return PollardRho.pollardRho(N);

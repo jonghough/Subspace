@@ -67,8 +67,6 @@ public class JacobiSymbol {
 				}
 			}
 
-			
-
 			// Use quadratic reciprocity
 			if (numerator.mod(FOUR).compareTo(THREE) == 0
 					&& denominator.mod(FOUR).compareTo(THREE) == 0) {
@@ -78,11 +76,9 @@ public class JacobiSymbol {
 			BigInteger temp = denominator.mod(numerator);
 			denominator = numerator;
 			numerator = temp;
-
 		}
 
 		return jacobi;
-
 	}
 
 	/**

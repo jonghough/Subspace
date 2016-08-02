@@ -7,13 +7,11 @@ import java.math.BigInteger;
 
 /**
  *  Gamma function, factorial.
- * @author Jon Hough
  *
  */
 public class Gamma {
 	
 	private static BigDecimal[] constants = {
-		new BigDecimal("0.99999999999980993"), 
 		new BigDecimal("676.5203681218851"), 
 		new BigDecimal("-1259.1392167224028"),
 		new BigDecimal("771.32342877765313"), 
@@ -69,13 +67,14 @@ public class Gamma {
 	 */
 	public static BigDecimal lanczosApproximation(BigDecimal D){
 		if(D.compareTo(new BigDecimal("0.5")) < 0) 
-			return new BigDecimal(Math.PI).divide((BigTrigonometry.bigSin(new BigDecimal(Math.PI).multiply(D)).multiply(lanczosApproximation(BigDecimal.ONE.subtract(D)))), BigDecimal.ROUND_CEILING);
+			return new BigDecimal(Math.PI).divide((BigTrigonometry.bigSin(new BigDecimal(Math.PI).
+					multiply(D)).multiply(lanczosApproximation(BigDecimal.ONE.subtract(D)))), BigDecimal.ROUND_HALF_DOWN);
  
 		D = D.subtract(BigDecimal.ONE);
-		BigDecimal a = constants[0];
+		BigDecimal a = new BigDecimal("0.99999999999980993");
 		BigDecimal t = D.add(new BigDecimal("7.5"));
-		for(int i = 1; i < constants.length; i++){
-			a = a.add(constants[i].divide(D.add(new BigDecimal(i)), 20, BigDecimal.ROUND_CEILING));// /(x+i);
+		for(int i = 0; i < constants.length; i++){
+			a = a.add(constants[i].divide(D.add(new BigDecimal(i+1)), 100, BigDecimal.ROUND_HALF_DOWN));
 		}
 		return new BigDecimal(String.valueOf(Math.sqrt(2*Math.PI))).
 				multiply(
@@ -84,6 +83,37 @@ public class Gamma {
 								Exp.exp(new BigDecimal("-1")
 								.multiply(t))
 								).multiply(a);
+	}
+
+
+	/**
+	 * Calculates an approximation to <code>gamma(D)</code>, using Lanczos algorithm and the fact that <br>
+	 *     <code>gamma(D) = D * gamma(D-1)</code>.
+	 * @param D BigDecimal d.
+	 * @return Gamma(D)
+	 */
+	public static BigDecimal gamma(BigDecimal D){
+		if(D.compareTo(new BigDecimal(0.5)) < 0)
+			return new BigDecimal(Math.PI).divide((BigTrigonometry.bigSin(new BigDecimal(Math.PI).
+					multiply(D)).multiply(gamma(BigDecimal.ONE.subtract(D)))), BigDecimal.ROUND_HALF_DOWN);
+		else if(D.compareTo(BigDecimal.ONE) < 0){
+			return lanczosApproximation(D);
+		}
+		else if(D.compareTo(BigDecimal.ONE) == 0){
+			return BigDecimal.ONE;
+		}
+		else {
+			BigDecimal f = D.subtract(BigDecimal.ONE); //gamma(d) = f !
+			BigDecimal g = f;
+			f = f.subtract(BigDecimal.ONE);
+			while (f.compareTo(BigDecimal.ONE) > 0) {
+				g = g.multiply(f);
+				f = f.subtract(BigDecimal.ONE);
+			}
+			f = f.add(BigDecimal.ONE); //because gamma(f+1) = f!
+			BigDecimal l = lanczosApproximation(f);
+			return g.multiply(l);
+		}
 	}
 
 

@@ -1,6 +1,11 @@
 package transcendance;
 
 
+import arithmetic.BernoulliNumbers;
+import arithmetic.Rational;
+
+import java.util.ArrayList;
+
 /**
  * Z function approximation for Riemann's Zeta function on the critical line, (0.5+it).
  * @see https://en.wikipedia.org/wiki/Z_function
@@ -100,7 +105,6 @@ public final class Zeta {
 	 * HM Edward's
 	 * <br>
 	 * <i>Riemann's Zeta Function</i>.
-	 * @author Jon Hough
 	 *
 	 */
 	private static class Coefficients {
@@ -110,11 +114,11 @@ public final class Zeta {
 				0.00007943300879521469, 0.00000046556124614504, -0.00000143272516309551, -0.00000010354847112314,
 				0.00000001235792708384, 0.00000000178810838577, -0.00000000003391414393, -0.00000000001632663392 };
 
-		public static double[] C1 = { 0.02682510262837535, -0.01378477342635185, -0.03849125048223508,
+		public static final double[] C1 = { 0.02682510262837535, -0.01378477342635185, -0.03849125048223508,
 				-0.00987106629906208, 0.00331075976085840, 0.00146478085779542, 0.00001320794062488,
 				-0.00005922748701847, -0.00000598024258537, 0.00000096413224562, 0.00000018334733722 };
 
-		public static double[] C2 = { 0.005188542830293, 0.000309465838807, -0.011335941078299, 0.002233045741958,
+		public static final double[] C2 = { 0.005188542830293, 0.000309465838807, -0.011335941078299, 0.002233045741958,
 				0.005196637408862, 0.000343991440762, -0.000591064842747, -0.000102299725479, 0.000020888392217,
 				0.000005927665493, -0.000000164238384, -0.000000151611998
 
@@ -127,5 +131,18 @@ public final class Zeta {
 		public static final double[] C4 = { 0.00046483389, -0.00100566074, 0.00024044856, 0.00102830861,
 				-0.00076578609, -0.00020365286, 0.00023212290, 0.00003260215, -0.00002557905, -0.00000410746,
 				0.00000117812, 0.00000024456 };
+	}
+
+
+	/**
+	 * Calculates <i>Zeta(2 * n)</i> for positive real integer, <i>n</i>.
+	 * @param n positive real integer.
+	 * @return Zeta(2 * n)
+	 */
+	public static double zeta2N(int n){
+		if( n <= 0)
+			throw new IllegalArgumentException("Argument must be positive.");
+		Rational b = BernoulliNumbers.calculateNthBernoulliNumber(2 * n);
+		return Math.pow(-1, n + 1) * b.toDouble() * Math.pow(( 2* Math.PI), 2 * n) / (2 * Gamma.factorial32(2 * n));
 	}
 }
