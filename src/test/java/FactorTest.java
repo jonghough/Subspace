@@ -7,46 +7,43 @@ import static org.junit.Assert.assertTrue;
 
 public class FactorTest {
 
-	/**
-	 * Tests all perform Pollard p-1 factorization algorithm and if failure after x iterations switches to 
-	 * Pollard rho algorithm.
-	 */
-	@Test
-	public void test1() {
-		assertTrue(2 == Factorizor.factor(new BigInteger("20492001030307"), Factorizor.FactorMethod.PMO).size());
-		assertTrue(5 == Factorizor.factor(new BigInteger("2302048929391113"), Factorizor.FactorMethod.PMO).size());
-
-	}
-
-	@Test
-	public void test2(){
-		assertTrue("Factor list of 3035576764345345055113211, size: ", 2 == Factorizor.factor(new BigInteger(
-				"3035576764345345055113211"), Factorizor.FactorMethod.RHO).size());
-	}
-
-	@Test
-	public void test3(){
-		assertTrue("Factor list of 100, size: ", 4 == Factorizor.factor(new BigInteger(
-				"100"), Factorizor.FactorMethod.PMO).size());
-	}
-
-	@Test
-	public void test4(){
-		assertTrue("Factor list of 8392894255239922239, size: ", 6 == Factorizor.factor(
-				new BigInteger("8392894255239922239"), Factorizor.FactorMethod.PPO).size());
-	}
-
-	@Test
-	public void test5(){
-		assertTrue("Factor list of 8392894255239922239, size: ", 6 == Factorizor.factor(
-				new BigInteger("8392894255239922239"), Factorizor.FactorMethod.ECF).size());
-	}
-
-	@Test
-	public void test6(){
-		assertTrue("Factor list of 8438503049348381100385800049534923490020044110031, size: ", 4== Factorizor.factor(new BigInteger(
-				"8438503049348381100385800049534923490020044110031"), Factorizor.FactorMethod.RHO).size());
-	}
+	
+//	@Test
+//	public void test1() {
+//		assertTrue(2 == Factorizor.factor(new BigInteger("20492001030307"), Factorizor.FactorMethod.PMO).size());
+//		assertTrue(5 == Factorizor.factor(new BigInteger("2302048929391113"), Factorizor.FactorMethod.PMO).size());
+//
+//	}
+//
+//	@Test
+//	public void test2(){
+//		assertTrue("Factor list of 3035576764345345055113211, size: ", 2 == Factorizor.factor(new BigInteger(
+//				"3035576764345345055113211"), Factorizor.FactorMethod.RHO).size());
+//	}
+//
+//	@Test
+//	public void test3(){
+//		assertTrue("Factor list of 100, size: ", 4 == Factorizor.factor(new BigInteger(
+//				"100"), Factorizor.FactorMethod.PMO).size());
+//	}
+//
+//	@Test
+//	public void test4(){
+//		assertTrue("Factor list of 8392894255239922239, size: ", 6 == Factorizor.factor(
+//				new BigInteger("8392894255239922239"), Factorizor.FactorMethod.PPO).size());
+//	}
+//
+//	@Test
+//	public void test5(){
+//		assertTrue("Factor list of 8392894255239922239, size: ", 6 == Factorizor.factor(
+//				new BigInteger("8392894255239922239"), Factorizor.FactorMethod.ECF).size());
+//	}
+//
+//	@Test
+//	public void test6(){
+//		assertTrue("Factor list of 8438503049348381100385800049534923490020044110031, size: ", 4== Factorizor.factor(new BigInteger(
+//				"8438503049348381100385800049534923490020044110031"), Factorizor.FactorMethod.RHO).size());
+//	}
 
 	@Test
 	public void test7(){
