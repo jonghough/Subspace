@@ -118,10 +118,6 @@ public class EllipticCurve {
 
 	}
 
-	public static int gcd(int a, int b) {
-		return b == 0 ? a : gcd(b, (b + a) % b);
-	}
-
 	private static int powerMod(int a, int r, int M) {
 		int c = r;
 		int total = 1;
@@ -189,7 +185,6 @@ public class EllipticCurve {
 		//using eqn Y^2 = X^3 + A*X+B
 		int tmp = (x *  x * x + c.A * x + c.B + c.N ) % c.N;
 		if(JacobiSymbol.calculateJacobi((long)tmp, (long)c.N) == 1){
-			System.out.println("has result");
 			for(int i = 0; i < c.N; i++){
 				if((i * i + c.N) % c.N == tmp){
 					return  c.new Point(x,i,false);

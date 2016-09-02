@@ -1,16 +1,11 @@
 package ellipticcurves;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.Random;
 
-import primes.BSmooth;
-import transcendance.Gamma;
-import ellipticcurves.EllipticCurve.Point;
-import factoring.Factorizor;
-import factoring.PollardRho;
 import arithmetic.Totient;
-import utils.BigUtils;
+import primes.BSmooth;
+import factoring.PollardRho;
 import utils.RootFinder;
 
 /**
@@ -22,6 +17,7 @@ public class BigEllipticCurve {
     private BigInteger A, B, N;
     private static final BigInteger MINUS_ONE = new BigInteger("-1");
     private static final BigInteger TWO = new BigInteger("2");
+    private static final BigInteger THREE = new BigInteger("3");
 
     public BigEllipticCurve(BigInteger A, BigInteger B, BigInteger N) {
         this.A = A;
@@ -83,6 +79,27 @@ public class BigEllipticCurve {
             return true;
         }
 
+        @Override
+        public String toString(){
+            return "("+x.toString()+", "+y.toString()+")";
+        }
+
+        /**
+         * Negates the point (negates the y-coordinate.
+         * @return Negation of this point.
+         */
+        public Point negate(){
+            return new Point(x, y.multiply(MINUS_ONE), IsInfinite);
+        }
+
+        /**
+         * Copies this point.
+         * @return New point with coordinates equal to this point.
+         */
+        public Point copy(){
+            return new Point(x, y, IsInfinite);
+        }
+
         private BigEllipticCurve getOuterType() {
             return BigEllipticCurve.this;
         }
@@ -117,29 +134,33 @@ public class BigEllipticCurve {
             return new Point(b);
         else if (b.IsInfinite)
             return new Point(a);
-        else if (a.x == b.x && a.y == MINUS_ONE.multiply(b.y)) {
+        else if (a.x.compareTo(b.x) == 0 && a.y.compareTo(MINUS_ONE.multiply(b.y)) == 0) {
             return new Point(BigInteger.ZERO, BigInteger.ZERO, false);
         } else {
             BigInteger lambda;
-            // BigInteger phi = Totient.totient(N);
-            if (a.x == b.x && a.y == b.y) {
+
+            if (a.x.compareTo(b.x) == 0 && a.y.compareTo(b.y) == 0) {
                 BigInteger denom = m(TWO.multiply(a.y));
                 // inverse of the denominator modulo N
 
-                BigInteger denomInv = null;
+                BigInteger denomInv;
                 try {
                     denomInv = denom.modInverse(N);
                 } catch (ArithmeticException e) {
-                    throw e;
+                    throw new EllipticCurveException(e.getMessage(), m(denom));
                 }
-                lambda = m((TWO.multiply(a.x).multiply(a.x).add(A)).multiply(denomInv));
+                lambda = m((THREE.multiply(a.x).multiply(a.x).add(A)).multiply(denomInv));
             } else {
                 lambda = m(b.y.subtract(a.y));
-                BigInteger inv = null;
+                //check if the two points add to infinity (zero)
+                if(m(b.x.subtract(a.x)).compareTo(BigInteger.ZERO) == 0)
+                    return new Point(BigInteger.ZERO, BigInteger.ZERO, true);
+
+                BigInteger inv;
                 try {
-                    inv = b.y.modInverse(N);
+                    inv = b.x.subtract(a.x).modInverse(N);
                 } catch (ArithmeticException e) {
-                    throw e;
+                    throw new EllipticCurveException(e.getMessage(), m(b.x.subtract(a.x)));
                 }
                 inv = m(inv);
                 lambda = lambda.multiply(inv);
@@ -156,91 +177,96 @@ public class BigEllipticCurve {
         }
     }
 
+
     /**
-     * Double and add algorithm to find the value of n*p, where p is a point on
-     * the elliptic curve.
      *
+     * @param d
      * @param p
-     * @param n
      * @return
      */
-    public Point doubleAndAdd(Point p, long n) {
-        Point q = p;
-        Point r = new Point(BigInteger.ZERO, BigInteger.ZERO, true);
-        while (n >= 1) {
-            try {
-                if (n % 2 == 1) {
-                    r = add(r, q);
-                }
+    public Point mul(int d, Point p){
+        Point q = new Point(BigInteger.ZERO, BigInteger.ZERO, true);
+        Point r = p.copy();
+        BigInteger D = new BigInteger(String.valueOf(d));
+        for(int i = 0; i < D.bitLength(); i ++){
+            if(D.shiftRight(i).and(BigInteger.ONE).compareTo(BigInteger.ONE) == 0){
 
-                q = add(q, q);
-            } catch (ArithmeticException e) {
-                // arithmetic exception implies we cannot find an
-                // inverse modulo N, hence some value is not coprime to N,
-                // and we can find a factor of N.
-                return r;
+                //may throw an exception -- possible factor found.
+                Point s;
+                s = this.add(q, r);
+                q = s;
             }
-            n = (long) Math.floor(0.5 * n);
+            r = this.add(r, r);
         }
-        return r; // r = n*P
+        return q;
     }
 
-    private static Point addInc(BigEllipticCurve curve, Point p, Point current) {
-        Point r = null;
-        try {
-            r = curve.add(current, p);
-        } catch (ArithmeticException e) {
-            return r;
-        }
-        return r;
-    }
 
-    // work in progress...
+    /**
+     *
+     * @param N
+     * @return
+     */
     public static BigInteger factorLenstra(BigInteger N) {
+        if(N.isProbablePrime(100))
+            return N;
+
+        if (N.mod(TWO).compareTo(BigInteger.ZERO) == 0)
+            return TWO;
+
+        if (N.mod(THREE).compareTo(BigInteger.ZERO) == 0)
+            return THREE;
         // choose random values
         final Random random = new Random(System.currentTimeMillis());
-        BigInteger x = new BigInteger("1103");//, random);
-        BigInteger y = new BigInteger("5609");//RootFinder.getRootFloor(N).bitLength(), random);
-        BigInteger a = new BigInteger("2007");//RootFinder.getRootFloor(N).bitLength(), random);
-        // calculate b
-        BigInteger b = y.multiply(y).subtract(x.pow(3)).subtract(a.multiply(x)).mod(N);
+        int k = 100;
+        while (k-- > 0) {
+            BigInteger x = new BigInteger(18, random).add(BigInteger.ONE).mod(N);
+            BigInteger y = new BigInteger(18, random).add(BigInteger.ONE).mod(N);
+            BigInteger a = new BigInteger(18, random).add(BigInteger.ONE).mod(N);
 
-        // assume elliptic curve y^2 = x^3 +ax+b
-        // set bound
-        long bound = BSmooth.L(N).toBigInteger().longValue();
-        //prevent bound being too small.
-        if (bound < 100) bound = 100;
+            // calculate b
+            BigInteger b = y.multiply(y).subtract(x.pow(3)).subtract(a.multiply(x)).mod(N);
 
-        //	bound = 6469693230L;
-        BigEllipticCurve bec = new BigEllipticCurve(a, b, N);
-        Point p = bec.new Point(x, y, false);
-        Point q = null;
-        long counter = 2;
-        System.out.println("EC bounds is " + bound);
-        while (counter++ < bound) {
-            if (q == null)
-                q = bec.doubleAndAdd(p, counter);
-            else {
-                q = addInc(bec, p, q);
-            }
-            BigInteger k = q.y.gcd(N);
-            BigInteger l = q.x.gcd(N);
+            // assume elliptic curve y^2 = x^3 +ax+b
+            // set bound
+            long bound = BSmooth.L(N).toBigInteger().longValue();
+            //prevent bound being too small.
+            if (bound < 100) bound = 100;
 
-            if (l.compareTo(BigInteger.ONE) > 0 && q.x != N) {
 
-                if (l.isProbablePrime(99)) {
-                    System.out.println("is prime " + l.toString());
-                    return l;
-                } else {
-                    System.out.println("not prime, factor " + l.toString());
-                    return factorLenstra(l);
+            BigEllipticCurve bec = new BigEllipticCurve(a, b, N);
+            Point p = bec.new Point(x, y, false);
+            Point q = null;
+            long counter = 2;
+            while (counter++ < bound) {
+
+                if(p.IsInfinite) break;
+                try{
+                    q = bec.mul((int)counter, p);
+
+                }catch(EllipticCurveException e){
+                    if(e.exceptionPoint.compareTo(BigInteger.ZERO) != 0) {
+                        BigInteger l = e.exceptionPoint.gcd(N);
+                        if (l.compareTo(BigInteger.ONE) > 0 && l.compareTo(N) < 0) {
+
+                            if (l.isProbablePrime(99)) {
+                                System.out.println("ECF found prime factor " + l.toString());
+                                return l;
+                            } else {
+                                return factorLenstra(l);
+                            }
+                        }
+                    }
+
                 }
+                p = q;
             }
         }
-        System.out.println("exhaust bound " + N.toString());
+        System.out.println("ECF exhausted bounds " + N.toString());
         if (N.isProbablePrime(99))
             return N;
         else return PollardRho.pollardRho(N);
+
     }
 
 }

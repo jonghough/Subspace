@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import factoring.Factorizor;
-import transcendance.Exp;
+import transcendence.Exp;
 import utils.HashMapBuilder;
 
 /**

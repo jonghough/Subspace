@@ -1,10 +1,8 @@
-package transcendance;
+package transcendence;
 
 
 import arithmetic.BernoulliNumbers;
 import arithmetic.Rational;
-
-import java.util.ArrayList;
 
 /**
  * Z function approximation for Riemann's Zeta function on the critical line, (0.5+it).

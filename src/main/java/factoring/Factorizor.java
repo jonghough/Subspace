@@ -104,59 +104,7 @@ public class Factorizor {
         return factorList;
     }
     
-    
 
-	/**
-	 * Calculates the next number in the lucas sequence used for finding
-	 * potential factors of N. base is the first number in the sequence and m is
-	 * the mth, to be calculated.
-	 * 
-	 * @param N
-	 * @param base
-	 * @param m
-	 * @return mth value in lucas sequence.
-	 */
-	public static BigInteger calcNext(BigInteger N, BigInteger base, BigInteger m) {
-		BigInteger x = base;
-		BigInteger y = base.multiply(base).subtract(TWO);
-		byte[] b = m.toByteArray();
-		int msbi = 0;
-
-		for (int i = 0; i < b.length; i++) {
-			if (i == 0) {
-				int j = 8;
-				while (j-- >= 0) {
-					if (((b[0] >> j) & 1) == 1) {
-						msbi = j;
-						break;
-					}
-				}
-				if (msbi > 0) {
-					for (int k = j - 1; k >= 0; k--) {
-						if (((b[0] >> k) & 1) == 1) {
-							x = x.multiply(y).subtract(base).mod(N);
-							y = y.multiply(y).subtract(TWO).mod(N);
-						} else {
-							y = x.multiply(y).subtract(base).mod(N);
-							x = x.multiply(x).subtract(TWO).mod(N);
-						}
-					}
-				}
-			} else {
-				for (int k = 8; k >= 0; k--) {
-					if (((b[i] >> k) & 1) == 1) {
-						x = x.multiply(y).subtract(base).mod(N);
-						y = y.multiply(y).subtract(TWO).mod(N);
-					} else {
-						y = x.multiply(y).subtract(base).mod(N);
-						x = x.multiply(x).subtract(TWO).mod(N);
-					}
-				}
-			}
-		}
-		return x;
-
-	}
     
     /**
      * Factorization by trial division. 

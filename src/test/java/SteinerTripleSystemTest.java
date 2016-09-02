@@ -1,9 +1,6 @@
 import combinatorics.SteinerTripleSystem;
 import static org.junit.Assert.*;
 import org.junit.Test;
-import transcendance.Exp;
-
-import java.math.BigDecimal;
 
 public class SteinerTripleSystemTest {
 

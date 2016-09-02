@@ -1,4 +1,4 @@
-package transcendance;
+package transcendence;
 
 
 import java.math.BigDecimal;

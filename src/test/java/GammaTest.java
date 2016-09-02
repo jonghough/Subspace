@@ -1,10 +1,7 @@
 import org.junit.Test;
-import transcendance.Exp;
-import transcendance.Gamma;
-import transcendance.Zeta;
+import transcendence.Gamma;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
 import static org.junit.Assert.*;
 

@@ -1,7 +1,5 @@
 
-package transcendance;
-
-import utils.RootFinder;
+package transcendence;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

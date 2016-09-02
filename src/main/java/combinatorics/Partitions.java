@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 
-import transcendance.Exp;
+import transcendence.Exp;
 import utils.RootFinder;
 
 /**
@@ -118,5 +118,42 @@ public class Partitions {
         BigDecimal multiplicand = BigDecimal.ONE.divide(RootFinder.squareRoot(THREE, 20).multiply(FOUR).multiply(nD), 20, BigDecimal.ROUND_HALF_DOWN);
         return Exp.exp(exponent).multiply(multiplicand).multiply(BigDecimal.ONE.subtract(inv));
     }
+
+
+//    /**
+//     *
+//     * @param k
+//     * @param n
+//     * @return
+//     */
+//    private static double A(int k, int n) {
+//        if(n < 0 || k < 0) throw new IllegalArgumentException("Arguments must be non-negative.");
+//        if(k <= 1){
+//            return k;
+//        }
+//        else if(k == 2){
+//            return Math.pow(-1, n);
+//        }
+//        double s = 0;
+//        double r = 2;
+//        double m = n % k;
+//
+//        for(int l = 0; l < 2 * k; l++){
+//            if (m == 0) {
+//                s += Math.pow(-1, l) * Math.cos(Math.PI * (( 6 * l + 1) / (6 * k)));
+//            }
+//            m += r;
+//            if(m >= k){
+//                m -= k;
+//                m %= k;
+//            }
+//            r+=3;
+//            if(r >= k){
+//                r-=k;
+//                r%=k;
+//            }
+//        }
+//        return Math.sqrt(k / 3) * s;
+//    }
 
 }

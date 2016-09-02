@@ -5,7 +5,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 
 import factoring.Factorizor;
-import transcendance.Exp;
+import transcendence.Exp;
 import utils.RootFinder;
 
 /**

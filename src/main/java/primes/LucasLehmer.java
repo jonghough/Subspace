@@ -5,15 +5,10 @@ import java.math.BigInteger;
 
 /**
  * Contains functions for primality test using Lucas-Lehmer algorithm.
- * 
- * @author Jon Hough
+ *
  */
 public class LucasLehmer {
 
-
-    /**
-     * Constant 2!
-     */
     private static final BigInteger TWO = new BigInteger("2");
     /**
      * Calculates whether the integer 2^pExponent - 1 is a Mersenne prime using

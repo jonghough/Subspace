@@ -3,7 +3,7 @@ package combinatorics;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import transcendance.Gamma;
+import transcendence.Gamma;
 
 /**
  * 

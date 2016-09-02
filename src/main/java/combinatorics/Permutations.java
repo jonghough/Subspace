@@ -2,9 +2,8 @@ package combinatorics;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
 
-import transcendance.Gamma;
+import transcendence.Gamma;
 
 public class Permutations {
 
