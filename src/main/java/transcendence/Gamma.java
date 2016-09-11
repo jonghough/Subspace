@@ -118,6 +118,113 @@ public class Gamma {
 
 
 	/**
+	 * Returns the <i>incomplete gamma function</i>, <i>IG(a,x)</i>.
+	 * Algorithm taken from
+	 * <br>
+	 *     <i>Numerical Recipes 6.2, p. 216</i>
+	 * @param a
+	 * @param x
+	 * @return
+	 */
+	public static BigDecimal incompleteGamma(BigDecimal a, BigDecimal x){
+		return gammq(a,x).divide(gamma(a),20, BigDecimal.ROUND_HALF_DOWN);
+	}
+
+	private static BigDecimal gammp(BigDecimal a, BigDecimal x){ //gammp
+		if(a.compareTo(BigDecimal.ZERO) < 0) throw new IllegalArgumentException("Parameter a must be greater than zero.");
+		if(x.compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException("Parameter x must be non-negative.");
+
+		if(x.compareTo(a.add(BigDecimal.ONE)) < 0){ System.out.println("A)");
+			return gser(a, x);
+		}
+		else{System.out.println("B");
+			return BigDecimal.ONE.subtract(gcf(a,x));
+		}
+
+
+	}
+
+	private static BigDecimal gammq(BigDecimal a, BigDecimal x){ //gammq
+		if(a.compareTo(BigDecimal.ZERO) < 0) throw new IllegalArgumentException("Parameter a must be greater than zero.");
+		if(x.compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException("Parameter x must be non-negative.");
+
+		if(x.compareTo(a.add(BigDecimal.ONE)) < 0){ System.out.println("C)");
+			return BigDecimal.ONE.subtract(gser(a, x));
+		}
+		else{System.out.println("D");
+			return gcf(a,x);
+		}
+	}
+
+	private static BigDecimal gser(BigDecimal a, BigDecimal x){ //gser
+		BigDecimal logGamma = Exp.ln(gamma(a), 20);
+		if(x.compareTo(BigDecimal.ZERO) < 0){
+			if(x.compareTo(BigDecimal.ZERO) < 0) throw new IllegalArgumentException("negative value.");
+			else{
+				return BigDecimal.ZERO;
+			}
+		}
+		else{
+			int max = 100;
+			BigDecimal del = BigDecimal.ONE.divide(a,20,BigDecimal.ROUND_HALF_DOWN);
+			BigDecimal sum = del;
+			BigDecimal ap = a;
+
+			for(int n = 1; n <= max;n++){
+				ap = ap.add(BigDecimal.ONE);
+				del = del.multiply(x.divide(ap, 20, BigDecimal.ROUND_HALF_DOWN));
+				sum = sum.add(del);
+				if(ap.abs().compareTo(sum.abs().multiply(new BigDecimal("1.0E-7"))) < 0){
+					return sum.multiply(Exp.exp(x.negate().add(a.multiply(Exp.ln(x, 20))).subtract(logGamma)));
+				}
+			}
+		}
+		throw new RuntimeException("Value a may be too large");
+
+	}
+
+
+	private static BigDecimal gcf(BigDecimal a, BigDecimal x){
+		BigDecimal logGamma = Exp.ln(gamma(a), 20);
+		BigDecimal b = x.add(BigDecimal.ONE).subtract(a);
+		BigDecimal c = BigDecimal.ONE.divide(new BigDecimal("1.0E-30"),20,BigDecimal.ROUND_HALF_DOWN);
+		BigDecimal d = BigDecimal.ONE.divide(b,20,BigDecimal.ROUND_HALF_DOWN);
+		BigDecimal h = d;
+
+		int n = 1;
+		int max = 100;
+		for(n = 1; n <= max;n++){
+			BigDecimal m = new BigDecimal(n);
+			BigDecimal an = m.negate().multiply(m.subtract(a));
+			b=b.add(new BigDecimal("2"));
+			d = an.multiply(d).add(b);
+			if(d.abs().compareTo(new BigDecimal("1.0E-30")) < 0){
+				d = new BigDecimal("1.0E-30");
+			}
+			c = b.add(an.divide(c, 20, BigDecimal.ROUND_HALF_DOWN));
+			if(c.abs().compareTo(new BigDecimal("1.0E-30")) < 0){
+				c = new BigDecimal("1.0E-30");
+			}
+			d = BigDecimal.ONE.divide(d,20, BigDecimal.ROUND_HALF_DOWN);
+			BigDecimal del = d.multiply(c);
+			h = h.multiply(del);
+			if(del.subtract(BigDecimal.ONE).abs().compareTo(new BigDecimal("1.0E-7")) < 0)
+				break;
+
+		}
+		return Exp.exp(x.negate().add(a.multiply(Exp.ln(x, 20))).subtract(logGamma)).multiply(h);
+	}
+
+	private static BigDecimal errf(BigDecimal x){
+		BigDecimal g = gammp(new BigDecimal("0.5"), x.multiply(x));
+		if(x.compareTo(BigDecimal.ZERO) < 0) return g.negate();
+		else return g;
+	}
+
+
+
+
+	/**
 	 * Finds an approximation of <i>Gamma(D+1)</i> for BigDecimal D, i.e. for integers <i>D!</i>.
 	 * @param D
 	 * @return stirling approximation of Gamma(D+1)

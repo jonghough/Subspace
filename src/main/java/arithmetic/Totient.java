@@ -23,7 +23,8 @@ public class Totient {
 	 * 
 	 * @param n
 	 *            BigInteger to factor.
-	 * @return
+	 * @return Totient(n), the number of positive integers less than n, which
+	 * <br> are coprime with n.
 	 */
 	public static BigInteger totient(BigInteger n) {
 		if (n.compareTo(BigInteger.ONE) <= 0) {
@@ -31,7 +32,7 @@ public class Totient {
 		}
 		ArrayList<BigInteger> factorList = Factorizor.factor(n, Factorizor.FactorMethod.RHO);
 		HashMap<BigInteger, Integer> map = HashMapBuilder.toHashMap(factorList);
-		// final product to calculate totient.
+
 		BigInteger prod = BigInteger.ONE;
 		Iterator<Entry<BigInteger, Integer>> iter = map.entrySet().iterator();
 		while (iter.hasNext()) {

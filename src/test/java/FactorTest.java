@@ -7,7 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 public class FactorTest {
 
-	
+
 //	@Test
 //	public void test1() {
 //		assertTrue(2 == Factorizor.factor(new BigInteger("20492001030307"), Factorizor.FactorMethod.PMO).size());

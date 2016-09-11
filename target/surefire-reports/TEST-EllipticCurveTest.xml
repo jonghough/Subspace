@@ -63,6 +63,6 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="EllipticCurveTest" name="test1" time="0.001"/>
-  <testcase classname="EllipticCurveTest" name="test2" time="0.021"/>
+  <testcase classname="EllipticCurveTest" name="test1" time="0.003"/>
+  <testcase classname="EllipticCurveTest" name="test2" time="0.019"/>
 </testsuite>

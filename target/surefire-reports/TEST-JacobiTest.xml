@@ -69,11 +69,11 @@
   <testcase classname="JacobiTest" name="test13" time="0"/>
   <testcase classname="JacobiTest" name="test14" time="0"/>
   <testcase classname="JacobiTest" name="test15" time="0"/>
-  <testcase classname="JacobiTest" name="test16" time="0.001"/>
+  <testcase classname="JacobiTest" name="test16" time="0"/>
   <testcase classname="JacobiTest" name="test17" time="0"/>
   <testcase classname="JacobiTest" name="test18" time="0"/>
-  <testcase classname="JacobiTest" name="test19" time="0"/>
-  <testcase classname="JacobiTest" name="test20" time="0.001"/>
+  <testcase classname="JacobiTest" name="test19" time="0.002"/>
+  <testcase classname="JacobiTest" name="test20" time="0"/>
   <testcase classname="JacobiTest" name="test21" time="0"/>
   <testcase classname="JacobiTest" name="test22" time="0"/>
   <testcase classname="JacobiTest" name="test1" time="0"/>

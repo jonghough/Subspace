@@ -5,9 +5,7 @@ import org.junit.Test;
 import java.math.BigInteger;
 import java.util.HashSet;
 
-/**
- * Created by jp20151 on 8/31/16.
- */
+
 public class EllipticCurveTest {
 
     @Test

@@ -203,7 +203,9 @@ public class BigEllipticCurve {
 
 
     /**
-     *
+     * Returns a single prime factor of the positive integer, <i>N</i>,
+     * by using <i>Lenstra's</i> factorization algorithm. If none can be
+     * found the algorithm will fallback to <i>Rho factorization</i>.
      * @param N
      * @return
      */
