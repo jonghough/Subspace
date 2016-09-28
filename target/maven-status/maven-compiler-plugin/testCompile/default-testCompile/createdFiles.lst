@@ -1,9 +1,8 @@
-IntegrationTest$2.class
 ExpTest.class
 PermutationTest.class
 PrimeCountTest.class
 PartitionsTest.class
-IntegrationTest$1.class
+PrimorialTest.class
 SteinerTripleSystemTest.class
 TotientTest.class
 EllipticCurveTest.class
@@ -16,7 +15,7 @@ SigmaTest.class
 StirlingNumbersTest.class
 BellNumbersTest.class
 ODETest.class
+RootFinderTest.class
 SieveTest.class
 BernoulliNumbersTest.class
-IntegrationTest$3.class
 CatalanNumbersTest.class

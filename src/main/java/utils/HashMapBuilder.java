@@ -6,13 +6,13 @@ import java.util.HashMap;
 
 /**
  * Builds hashmaps from BigInteger lists.
- * @author Jon Hough
- *
  */
 public class HashMapBuilder {
 
     /**
-     * 
+     * Builds a hashmap where keys are <code>BigInteger</code>s and values are <code>Integer</code>s.<br>
+     * In most cases the values represent the multiplicity of a prime factor of some number, where the
+     * factor is the key.
      * @param bigIntList
      * @return Hashmap
      */

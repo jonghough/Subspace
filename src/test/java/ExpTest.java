@@ -32,4 +32,22 @@ public class ExpTest {
         assertTrue((d1.subtract(new BigDecimal("2120155.5148095")).abs().compareTo(new BigDecimal(0.001)) < 0));
 
     }
+
+    @Test
+    public void test4(){
+
+        BigDecimal d1 = Exp.exp(new BigDecimal("0.45"));
+
+        assertTrue((d1.subtract(new BigDecimal("1.56831")).abs().compareTo(new BigDecimal(0.001)) < 0));
+
+    }
+
+    @Test
+    public void test5(){
+
+        BigDecimal d1 = Exp.exp(new BigDecimal("-10"));
+
+        assertTrue((d1.subtract(new BigDecimal("4.53999E-5")).abs().compareTo(new BigDecimal(0.001)) < 0));
+
+    }
 }

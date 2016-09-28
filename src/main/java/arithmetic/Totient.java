@@ -11,8 +11,11 @@ import utils.HashMapBuilder;
 
 /**
  * Euler Totient function calculator.
- * 
- *
+ * <i>Totient function</i> is defined for positive integer <i>n</i><br>
+ * as the number of positive integers less than n which ar ecorpime to<br>
+ * n.<br>
+ * e.g. if <code>n=7</code>, then <code>totient(n)</code> is <code>6</code><br>
+ * because <i>1,2,3,4,5,6</i> are all coprime to <i>7</i>.
  *
  */
 public class Totient {

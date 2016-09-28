@@ -87,7 +87,7 @@ public final class Zeta {
 	 * Calculates Z(0.5 + it) where t is the imaginary part argument. 
 	 * @param imaginaryPart
 	 * @return Z(0.5 + i*imaginaryPart), approximation of zeta function at this point.
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException if imginary part is non-positive
 	 */
 	public double z(double imaginaryPart) throws IllegalArgumentException {
 		if (imaginaryPart <= 0)
@@ -118,9 +118,7 @@ public final class Zeta {
 
 		public static final double[] C2 = { 0.005188542830293, 0.000309465838807, -0.011335941078299, 0.002233045741958,
 				0.005196637408862, 0.000343991440762, -0.000591064842747, -0.000102299725479, 0.000020888392217,
-				0.000005927665493, -0.000000164238384, -0.000000151611998
-
-		};
+				0.000005927665493, -0.000000164238384, -0.000000151611998};
 
 		public static final double[] C3 = { 0.0013397160907, -0.0037442151364, 0.0013303178920, 0.0022654660765,
 				-0.0009548499998, -0.0006010038459, 0.0001012885828, 0.0000686573345, -0.0000005985366,

@@ -373,20 +373,10 @@ public class PrimeCount {
 		return total;
 	}
 
-	/*
-	 * private static BigInteger sumPi(BigDecimal m, BigInteger n, BigInteger
-	 * mu) { BigDecimal tmp = new BigDecimal("0"); BigInteger cachedPrime =
-	 * calcNthPrime(n); BigInteger i = BigInteger.ONE; BigInteger total =
-	 * BigInteger.ZERO; while (i.compareTo(mu) <= 0) { cachedPrime =
-	 * calcNextPrime(cachedPrime); tmp = new BigDecimal(cachedPrime); total =
-	 * total.add(pi(m.divide(tmp, 6, BigDecimal.ROUND_HALF_UP))); i =
-	 * i.add(BigInteger.ONE);
-	 *
-	 * } return total; }
-	 */
+
 
 	private static BigInteger sumPi(BigDecimal m, BigInteger n, BigInteger mu) {
-		BigDecimal tmp = new BigDecimal("0");
+		BigDecimal tmp;// = BigDecimal.ZERO;
 		BigInteger i = BigInteger.ONE;
 		BigInteger total = BigInteger.ZERO;
 
@@ -401,12 +391,4 @@ public class PrimeCount {
 		return total;
 	}
 
-	/*
-	 * public static BigInteger pi2(BigDecimal n){
-	 * 
-	 * BigDecimal fr = NewtonIterator.nRoot(n, 4); BigDecimal sr =
-	 * NewtonIterator.nRoot(n, 2);
-	 * 
-	 * }
-	 */
 }

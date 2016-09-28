@@ -25,6 +25,16 @@ public class BigEllipticCurve {
         this.N = N;
     }
 
+
+    /**
+     * Elliptic curve point. Points can be eithe rof two catergories: <br>
+     *     1. (x,y) coordinates <br>
+     *     2. infinity - indicating the "ppint-at-infinity", which can
+     *     be considered as the identity elemenet in elliptic curve
+     *     arithmetic.<br>
+     *
+     *
+     */
     public class Point {
         public BigInteger x;
         public BigInteger y;
@@ -111,7 +121,7 @@ public class BigEllipticCurve {
     }
 
     /**
-     * reutnr i Modulo N
+     * return i Modulo N
      *
      * @param i
      * @return
@@ -124,8 +134,8 @@ public class BigEllipticCurve {
      * Adds two points on the instance's elliptic curve (curve defined by A, B,
      * N params of the constructor).
      *
-     * @param a
-     * @param b
+     * @param a elliptic curve point
+     * @param b elliptic curve point
      * @return the sum a+b on the curve, will be a third point on the curve.
      * @throws ArithmeticException
      */
@@ -234,7 +244,6 @@ public class BigEllipticCurve {
             long bound = BSmooth.L(N).toBigInteger().longValue();
             //prevent bound being too small.
             if (bound < 100) bound = 100;
-
 
             BigEllipticCurve bec = new BigEllipticCurve(a, b, N);
             Point p = bec.new Point(x, y, false);

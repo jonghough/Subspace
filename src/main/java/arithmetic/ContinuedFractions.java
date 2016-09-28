@@ -2,7 +2,7 @@
 package arithmetic;
 
 /**
- * @author Jon Hough
+ *
  */
 public class ContinuedFractions {
 

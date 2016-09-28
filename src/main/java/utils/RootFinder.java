@@ -104,7 +104,7 @@ public class RootFinder {
 	 */
 	public static BigDecimal cubeRoot(BigDecimal n, int scale) {
 
-		BigDecimal third = new BigDecimal("0.333333333333333333333");
+		BigDecimal third = new BigDecimal(1.0 / 3.0);
 		BigDecimal temp = third.multiply(n);
 		BigDecimal root = third.multiply((TWO.multiply(temp).add(n.divide(
 				temp.multiply(temp), scale, BigDecimal.ROUND_HALF_UP))));

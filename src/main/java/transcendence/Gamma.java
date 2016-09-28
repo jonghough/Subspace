@@ -134,10 +134,10 @@ public class Gamma {
 		if(a.compareTo(BigDecimal.ZERO) < 0) throw new IllegalArgumentException("Parameter a must be greater than zero.");
 		if(x.compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException("Parameter x must be non-negative.");
 
-		if(x.compareTo(a.add(BigDecimal.ONE)) < 0){ System.out.println("A)");
+		if(x.compareTo(a.add(BigDecimal.ONE)) < 0){
 			return gser(a, x);
 		}
-		else{System.out.println("B");
+		else{
 			return BigDecimal.ONE.subtract(gcf(a,x));
 		}
 
@@ -148,10 +148,10 @@ public class Gamma {
 		if(a.compareTo(BigDecimal.ZERO) < 0) throw new IllegalArgumentException("Parameter a must be greater than zero.");
 		if(x.compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException("Parameter x must be non-negative.");
 
-		if(x.compareTo(a.add(BigDecimal.ONE)) < 0){ System.out.println("C)");
+		if(x.compareTo(a.add(BigDecimal.ONE)) < 0){ 
 			return BigDecimal.ONE.subtract(gser(a, x));
 		}
-		else{System.out.println("D");
+		else{
 			return gcf(a,x);
 		}
 	}

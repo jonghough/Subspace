@@ -8,7 +8,8 @@ import transcendence.Exp;
 import utils.RootFinder;
 
 /**
- * @author Jon Hough
+ * Holds a collection of static methods for finding
+ * integer partitions.
  */
 public class Partitions {
 

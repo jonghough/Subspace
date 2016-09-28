@@ -28,7 +28,6 @@ public class Factorizor {
     private static final BigInteger TWO = new BigInteger("2");
     private static final BigInteger THREE = new BigInteger("3");
     private static final BigInteger FIVE = new BigInteger("5");
-    
 
 	/**
 	 * Factorization method to use.<br>
