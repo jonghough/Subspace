@@ -7,7 +7,6 @@ import arithmetic.Rational;
 /**
  * Z function approximation for Riemann's Zeta function on the critical line, (0.5+it).
  * @see https://en.wikipedia.org/wiki/Z_function
- * @author Jon Hough
  *
  */
 public final class Zeta {

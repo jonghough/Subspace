@@ -3,7 +3,6 @@ numerics/IFunction.class
 combinatorics/PermutationsGeneric.class
 numerics/Differentiation.class
 utils/RootFinder.class
-combinatorics/CatalanNumbers.class
 ellipticcurves/EllipticCurve.class
 combinatorics/BellNumbers.class
 arithmetic/BernoulliNumbers.class
@@ -17,6 +16,8 @@ factoring/PollardRho.class
 utils/BigUtils.class
 combinatorics/SteinerTripleSystem.class
 factoring/Factorizor$FactorMethod.class
+complex/Cpx$ComplexException.class
+numerics/FFT.class
 primes/Primality.class
 transcendence/Exp.class
 primes/BSmooth.class
@@ -35,8 +36,11 @@ primes/Liouville.class
 primes/LucasLehmer.class
 arithmetic/Sigma.class
 primes/Sieve.class
+combinatorics/CatalanNumber.class
+complex/Cpx.class
 combinatorics/StirlingNumbers.class
 numerics/ODE.class
+transcendence/Bessel.class
 transcendence/Beta.class
 arithmetic/ContinuedFractions.class
 combinatorics/SteinerTripleSystem$Triple.class
@@ -45,6 +49,7 @@ transcendence/BigTrigonometry.class
 factoring/Factorizor.class
 factoring/QuadraticSieve.class
 primes/Primorial.class
+arithmetic/EulerNumber.class
 ellipticcurves/EllipticCurve$Point.class
 factoring/PollardPMO.class
 arithmetic/Chebyshev.class

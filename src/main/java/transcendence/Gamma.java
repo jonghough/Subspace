@@ -124,7 +124,7 @@ public class Gamma {
 	 *     <i>Numerical Recipes 6.2, p. 216</i>
 	 * @param a
 	 * @param x
-	 * @return
+	 * @return incomplete <i>gamma</i> function
 	 */
 	public static BigDecimal incompleteGamma(BigDecimal a, BigDecimal x){
 		return gammq(a,x).divide(gamma(a),20, BigDecimal.ROUND_HALF_DOWN);
@@ -148,7 +148,7 @@ public class Gamma {
 		if(a.compareTo(BigDecimal.ZERO) < 0) throw new IllegalArgumentException("Parameter a must be greater than zero.");
 		if(x.compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException("Parameter x must be non-negative.");
 
-		if(x.compareTo(a.add(BigDecimal.ONE)) < 0){ 
+		if(x.compareTo(a.add(BigDecimal.ONE)) < 0){
 			return BigDecimal.ONE.subtract(gser(a, x));
 		}
 		else{

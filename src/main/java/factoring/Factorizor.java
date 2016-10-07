@@ -113,7 +113,7 @@ public class Factorizor {
      * @return
      */
     public static BigInteger trialDivisionFactor(BigInteger N){
-    	if(N.compareTo(BigInteger.ONE) < 0) throw new IllegalArgumentException("Must have positive arguement.");
+    	if(N.compareTo(BigInteger.ONE) < 0) throw new IllegalArgumentException("Must have positive argument.");
     	if(N.compareTo( new BigInteger(String.valueOf(Integer.MAX_VALUE)))> 0)
     		throw new IllegalArgumentException("Argument may be too large for simple factorization algorithm.");
     	if(N == BigInteger.ONE) return BigInteger.ONE;

@@ -67,7 +67,7 @@ public final class Rational {
 
     public Rational reciprocal() {
         if (mNumerator == 0L)
-            throw new RuntimeException("Exception finding reciprical of rational where numerator = 0.");
+            throw new RuntimeException("Exception finding reciprocal of rational where numerator = 0.");
         return new Rational(mDenominator, mNumerator);
     }
 
@@ -75,6 +75,12 @@ public final class Rational {
         return new Rational(-1 * mNumerator, mDenominator);
     }
 
+    public Rational pow(int n){
+        long num = (long)Math.pow(mNumerator, n);
+        long den = (long)Math.pow(mDenominator, n);
+
+        return new Rational(num, den);
+    }
 
     @Override
     public String toString() {

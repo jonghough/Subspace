@@ -3,7 +3,7 @@ package combinatorics;
 /**
  *
  */
-public class CatalanNumbers {
+public class CatalanNumber {
 
     private long catalanNumber(int index){
         if(index < 0) throw new IllegalArgumentException("Argument must be non-negative.");
@@ -26,7 +26,7 @@ public class CatalanNumbers {
      *
      * @param index
      */
-    public CatalanNumbers(int index){
+    public CatalanNumber(int index){
         if(index < 0) throw new IllegalArgumentException("Argument must be non-negative.");
         mIndex = index;
         mCatalanNumber = catalanNumber(index);
