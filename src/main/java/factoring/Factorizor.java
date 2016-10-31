@@ -52,17 +52,20 @@ public class Factorizor {
         ArrayList<BigInteger> factorList = new ArrayList<BigInteger>();
         if (N.compareTo(BigInteger.ONE) == 0)
             return factorList;
-        BigInteger divisor = null;
-        if(factorMethod == FactorMethod.RHO)
-        	divisor = PollardRho.pollardRho(N);
-        else if(factorMethod == FactorMethod.PPO)
-        	divisor = WilliamsPPO.ppoFactor(N);
-        else if(factorMethod == FactorMethod.PMO)
-        	divisor = PollardPMO.pmoFactor(N);
-        else if(factorMethod == FactorMethod.ECF)
-        	divisor = BigEllipticCurve.factorLenstra(N);
-        factorList.add(divisor);
-        factorList.addAll(factor(N.divide(divisor), factorMethod));
+        BigInteger d = N;
+        do {
+            BigInteger divisor = null;
+            if (factorMethod == FactorMethod.RHO)
+                divisor = PollardRho.pollardRho(d);
+            else if (factorMethod == FactorMethod.PPO)
+                divisor = WilliamsPPO.ppoFactor(d);
+            else if (factorMethod == FactorMethod.PMO)
+                divisor = PollardPMO.pmoFactor(d);
+            else if (factorMethod == FactorMethod.ECF)
+                divisor = BigEllipticCurve.factorLenstra(d);
+            factorList.add(divisor);
+            d = d.divide(divisor);
+        }while(d.compareTo(BigInteger.ONE) > 0);
         return factorList;
     }
 

@@ -64,6 +64,6 @@
     <property name="sun.cpu.isalist" value=""/>
   </properties>
   <testcase classname="IntegrationTest" name="test1" time="0.031"/>
-  <testcase classname="IntegrationTest" name="test2" time="0"/>
-  <testcase classname="IntegrationTest" name="test3" time="0.001"/>
+  <testcase classname="IntegrationTest" name="test2" time="0.001"/>
+  <testcase classname="IntegrationTest" name="test3" time="0"/>
 </testsuite>

@@ -278,7 +278,6 @@ public class PrimeCount {
 	 * m. Starting at 2 as the first prime. Essentially an implementation of
 	 * <b>Meissel formula</b>.<br>
 	 *
-	 * @see http://mathworld.wolfram.com/MeisselsFormula.html
 	 * @param m
 	 * @return
 	 */

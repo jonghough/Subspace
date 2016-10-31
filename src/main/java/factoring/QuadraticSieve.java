@@ -4,6 +4,7 @@ package factoring;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 import arithmetic.JacobiSymbol;
@@ -13,10 +14,63 @@ import utils.RootFinder;
 
 /**
  * Incomplete. UNDER CONSTRUCTION
- * @author Jon Hough
  *
  */
 public class QuadraticSieve {
+
+
+    private BigInteger fo(BigInteger n, BigInteger p){
+        BigInteger d = n;
+        while(d.mod(p).compareTo(BigInteger.ZERO) == 0){
+            d = d.mod(p);
+        }
+        return d;
+    }
+
+    public static BigInteger factor(BigInteger N){
+        BigDecimal b = RootFinder.squareRoot(BSmooth.L(N), 10);
+        if(b.toBigInteger().compareTo(new BigInteger(String.valueOf(Integer.MAX_VALUE))) > 0) throw new
+                IllegalArgumentException("Arguemnt is too big to factor with quadratic sieve");
+
+        else{
+            int bInt = b.add(BigDecimal.ONE).toBigInteger().intValue();
+            ArrayList<Integer> sieved = Sieve.eratosthenes(bInt);
+            ArrayList<Integer> qresidues = new ArrayList<>();
+            for(Integer i : sieved){
+                if(JacobiSymbol.calculateJacobi(N, new BigInteger(String.valueOf(i))) == 1){
+                    qresidues.add(i);
+                }
+            }
+            // ----
+            ArrayList<BigInteger> r = new ArrayList<>();
+            ArrayList<BigInteger> l = new ArrayList<>();
+            HashMap<Integer,Integer> factorMultipleMap = new HashMap<>();
+            for(Integer i : qresidues){
+                BigInteger k = new BigInteger(String.valueOf(i * i)).subtract(N);
+
+                for(int prime : sieved){
+                    BigInteger bp = new BigInteger(String.valueOf(prime));
+                    while(k.mod(bp).compareTo(BigInteger.ZERO) == 0){
+                        k = k.mod(bp);
+                    }
+
+                }
+                if(k.compareTo(BigInteger.ONE) == 0)
+                    r.add(k);
+            }
+
+
+            // ----
+//            for(Integer i : qresidues) {
+//                BigInteger s = RootFinder.squareRoot(new BigDecimal(N.mod(new BigInteger(String.valueOf(i)))),20).toBigInteger();
+//
+//            }
+        }
+        return null;
+    }
+
+
+
 
 	/**
 	 * 

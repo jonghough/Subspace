@@ -7,7 +7,7 @@ public class Binomial {
     public static long coefficient(int n, int k){
 
         if(n < 0 || k < 0)
-            return 0;//throw new IllegalArgumentException("Arguments must be non-negative");
+            return 0;
         if(k > n)
             throw new IllegalArgumentException("second argument cannot be larger than the first argument");
 

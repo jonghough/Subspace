@@ -209,4 +209,90 @@ public class Bessel {
             return x < 0.0 && ((n & 1) > 0) ? -ans : ans;
         }
     }
+
+
+    private static double besselI0(double x) {
+        double absx = Math.abs(x);
+        if (absx < 3.75) {
+            double y = x / 3.75;
+            y *= y;
+            return 1.0 + y * (3.5156229 + y * (3.0899424 + y * (1.2067492 + y * (0.2659732 + y * (0.360768E-1 + y * 0.45813E-2)))));
+
+        } else {
+            double y = 3.75 / absx;
+            return (Math.exp(absx) / Math.sqrt(absx)) * (0.39894228 + y * (0.1328592E-1
+                    + y * (0.225319E-2 + y * (-0.157565E-2 + y * (0.916281E-2 + y * (-0.2057706E-1 + y * (0.2635537E-1 + y * (-0.1647633E-1 + y * 0.392377E-2))))))));
+        }
+    }
+
+    private static double besselK0(double x) {
+        if (x <= 0) throw new IllegalArgumentException("Argument must be positive.");
+        if (x <= 2.0) {
+            double y = x * x / 4.0;
+            return (-Math.log(x / 2.0) * besselI0(x)) + (-0.57721566 + y * (0.42278420 + y * (0.23069756 + y * (0.3488590E-1 + y * (0.262698E-2 + y * (0.10750E-3 + y * 0.74E-5))))));
+        } else {
+            double y = 2.0 / x;
+            return (Math.exp(-x) / Math.sqrt(x)) * (1.25331414 + y * (-0.7832358E-1 + y * (0.2189568E-1 + y * (-0.1062446E-1 + y * (0.587872E-2 + y * (-0.251540E-2 + y * 0.53208E-3))))));
+        }
+    }
+
+    private static double besselI1(double x) {
+        double absx = Math.abs(x);
+        double res;
+        double y;
+        if (absx < 3.75) {
+            y = x / 3.75;
+            y *= y;
+            res = absx * (0.5 + y * (0.87890594 + y * (0.51498869 + y * (0.15084934
+                    + y * (0.2658733E-1 + y * (0.301532E-2 + y * 0.32411E-3))))));
+        } else {
+            y = 3.75 / absx;
+            res = 0.2282967E-1 + y * (-0.2895312E-1 + y * (0.1787654E-1
+                    - y * 0.420059E-2));
+            res = 0.39894228 + y * (-0.3988024E-1 + y * (-0.362018E-2
+                    + y * (0.163801E-2 + y * (-0.1031555E-1 + y * res))));
+            res *= (Math.exp(absx) / Math.sqrt(absx));
+        }
+        return x < 0.0 ? -res : res;
+    }
+
+
+    private static double besselK1(double x) {
+        if (x <= 0) throw new IllegalArgumentException("Argument must be positive.");
+        double res;
+        double y;
+
+        if (x <= 2.0) {
+            y = x * x / 4.0;
+            res = (Math.log(x / 2.0) * besselI1(x)) + (1.0 / x) * (1.0 + y * (0.15443144 + y * (-0.67278579 + y * (-0.18156897 + y * (-0.1919402E-1 + y * (-0.110404E-2 + y * (-0.4686E-4)))))));
+        } else {
+            y = 2.0 / x;
+            res = (Math.exp(-x) / Math.sqrt(x)) * (1.25331414 + y * (0.23498619 + y * (-0.3655620E-1 + y * (0.1504268E-1 + y * (-0.780353E-2 + y * (0.325614E-2 + y * (-0.68245E-3)))))));
+        }
+        return res;
+    }
+
+    /**
+     * Calculates the <i>Modified Bessel Function of the Second Kind, K(n,x)</i>.
+     * @param n
+     * @param x
+     * @return
+     */
+    public static double besselK(int n, double x) {
+        if (n < 0) throw new IllegalArgumentException("Argument n must be non-negative.");
+        else if (x <= 0) throw new IllegalArgumentException("Argument x must be positive.");
+
+        double bk, bkm, bkp;
+        if (n == 0) return besselK0(x);
+        else if (n == 1) return besselK1(x);
+        double d = 2.0 / x;
+        bkm = besselK0(x);
+        bk = besselK1(x);
+        for (int i = 1; i < n; i++) {
+            bkp = bkm + i * d * bk;
+            bkm = bk;
+            bk = bkp;
+        }
+        return bk;
+    }
 }

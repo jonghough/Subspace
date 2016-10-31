@@ -15,7 +15,7 @@ public class Primality {
 	private static final BigInteger THREE = new BigInteger("3");
 
 	/**
-	 * Preforms Naive trial division test of primality on val.
+	 * Performs Naive trial division test of primality on val.
 	 *
 	 * @param val
 	 * @return

@@ -63,6 +63,6 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="SteinerTripleSystemTest" name="test1" time="0.001"/>
-  <testcase classname="SteinerTripleSystemTest" name="test2" time="0"/>
+  <testcase classname="SteinerTripleSystemTest" name="test1" time="0"/>
+  <testcase classname="SteinerTripleSystemTest" name="test2" time="0.001"/>
 </testsuite>

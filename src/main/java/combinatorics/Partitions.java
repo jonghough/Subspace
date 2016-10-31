@@ -1,8 +1,10 @@
 package combinatorics;
 
+import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import transcendence.Exp;
 import utils.RootFinder;
@@ -53,6 +55,127 @@ public class Partitions {
         }
 
         return arr;
+    }
+
+
+    /**
+     * Generates the conjugate partition to the given partition. e.g. if
+     * the <i>partition</i> is represented as: <br>
+     *     <code>* * * *<br>
+     *           * *<br>
+     *           *<br>
+     *     </code><br>
+     * then the <i>conjugate partition</i> can be represented as: <br>
+     *     <code>* * *<br>
+     *           * *<br>
+     *           *<br>
+     *           *<br>
+     *     </code><br>
+     *         i.e. rows and columns are interchanged.
+     * @param partition partition from which to generate the conjugate.
+     * @return conjugate partition.
+     */
+    public static ArrayList<Integer> conjugatePartition(ArrayList<Integer> partition){
+        int l = partition.get(0);
+        ArrayList<Integer> init = new ArrayList<>();
+        for(int i = 0; i <= partition.get(0);i++){
+            init.add(1);
+
+        }
+        int np = partition.get(0);
+        for(int j = 1; j < partition.size(); j++){
+            for(int i = 0; i < partition.get(j); i++){
+                if(i < init.size())
+                    init.set(i, init.get(i) + 1);
+                else init.add(1);
+            }
+        }
+        ArrayList<Integer> res = new ArrayList<>();
+        res.addAll(init.subList(0, np));
+        return res;
+    }
+
+    /**
+     *
+     * Returns the lexicographic successor parititon of the given partition, <code>partition</code>,
+     * of integer <code>m</code> of size <code>n</code>. e.g.
+     * <code>successor(5,3,{3,1,1});</code><br>
+     *     returns<br>
+     *     <code>{2,2,1}</code>
+     * @param m
+     * @param n
+     * @param partition
+     * @return
+     */
+    public static ArrayList<Integer> successor(int m, int n, ArrayList<Integer> partition){
+        int i = 1;
+        while(i < n && partition.get(0) <= partition.get(i) + 1){
+            i++;
+        }
+        if(i >= n){
+            throw new RuntimeException("No partition found");
+        }
+        else{
+            ArrayList<Integer> p2 = new ArrayList<Integer>(partition);
+             p2.set(i, partition.get(i) + 1);
+            int d = -1;
+            for(int j = i-1 ;  j >= 1; j--){
+                d = d + p2.get(j) - p2.get(i);
+                p2.set(j, p2.get(i));
+            }
+            p2.set(0, p2.get(0) + d);
+            return p2;
+        }
+
+    }
+
+    public static int enumeratePartitions(int m, int n) {
+        HashMap<PartitionPair, Integer> hashMap = new HashMap<>();
+        hashMap.put(new PartitionPair(0,0), 1);
+
+        for(int i = 1; i <= m; i++){
+            hashMap.put(new PartitionPair(i,0), 0);
+        }
+
+        for(int i = 1; i <= m; i++){
+            for(int j = 1; j <= Math.min(i,n); j++){
+                if(i < 2 * j){
+                    hashMap.put(new PartitionPair(i, j), hashMap.get(new PartitionPair(i-1, j - 1)));
+                }
+                else{
+                    hashMap.put(new PartitionPair(i, j), hashMap.get(new PartitionPair(i-1, j - 1)) + hashMap.get(new PartitionPair(i - j, j)));
+                }
+            }
+        }
+
+        return hashMap.get(new PartitionPair(m,n));
+
+    }
+
+    public static int lexicographicRank(int m, int n, ArrayList<Integer> partition){
+
+        ArrayList<Integer> parts = new ArrayList<>();
+        for(int i = 0; i < partition.size(); i++){
+            parts.add(partition.get(i));
+
+        }
+        int k = 0;
+        int M = m;
+        int N = n;
+        while(M > 0){
+            if(parts.get(N-1) == 1){
+                M--;
+                N--;
+            }
+            else{
+                for(int i = 0; i < N;i++){
+                    parts.set(i, parts.get(i) - 1);
+                }
+                k += enumeratePartitions(M-1, N-1);
+                M -= N;
+            }
+        }
+        return k;
     }
 
     /**
@@ -121,40 +244,34 @@ public class Partitions {
     }
 
 
-//    /**
-//     *
-//     * @param k
-//     * @param n
-//     * @return
-//     */
-//    private static double A(int k, int n) {
-//        if(n < 0 || k < 0) throw new IllegalArgumentException("Arguments must be non-negative.");
-//        if(k <= 1){
-//            return k;
-//        }
-//        else if(k == 2){
-//            return Math.pow(-1, n);
-//        }
-//        double s = 0;
-//        double r = 2;
-//        double m = n % k;
-//
-//        for(int l = 0; l < 2 * k; l++){
-//            if (m == 0) {
-//                s += Math.pow(-1, l) * Math.cos(Math.PI * (( 6 * l + 1) / (6 * k)));
-//            }
-//            m += r;
-//            if(m >= k){
-//                m -= k;
-//                m %= k;
-//            }
-//            r+=3;
-//            if(r >= k){
-//                r-=k;
-//                r%=k;
-//            }
-//        }
-//        return Math.sqrt(k / 3) * s;
-//    }
 
+}
+
+
+class PartitionPair{
+    public final int m;
+    public final int n;
+
+    public PartitionPair(int m_, int n_){
+        m = m_; n = n_;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PartitionPair that = (PartitionPair) o;
+
+        if (m != that.m) return false;
+        return n == that.n;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = m;
+        result = 31 * result + n;
+        return result;
+    }
 }

@@ -21,6 +21,7 @@ numerics/FFT.class
 primes/Primality.class
 transcendence/Exp.class
 primes/BSmooth.class
+combinatorics/PartitionPair.class
 arithmetic/JacobiSymbol.class
 numerics/IFirstOrderODE.class
 transcendence/Gamma.class
