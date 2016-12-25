@@ -56,9 +56,7 @@ public class StirlingNumbers {
                 }
             }
         }
-
         return stirlingMap.get(generateHash(m, n));
-
     }
 
     private static int generateHash(int a, int b) {

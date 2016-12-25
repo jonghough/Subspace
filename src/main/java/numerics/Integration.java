@@ -3,7 +3,7 @@ package numerics;
 
 import java.util.ArrayList;
 
-/* UNDER CONSTRUCTION */
+
 public class Integration {
 
 
@@ -108,12 +108,43 @@ public class Integration {
     }
 
 
-//    public static float integrateAdaptiveQuadrature(IFunction function, float lower, float upper, int levels, float tolerance){
-//        float out = 0;
-//        int i = 1;
-//        float tol = 10 * tolerance;
-//        //TODO
-//        return 0;
-//    }
+    /**
+     * Calculates the integral of the <i>real valued function</i>, <code>func</code>, between the
+     * points <code>a</code> and <code>b</code>, using the adaptive quadrature method.
+     * @param func real valued function
+     * @param a lower bound
+     * @param b upper bound
+     * @return integral
+     */
+    public static float integrateAdaptiveQuadrature(IFunction func, float a, float b){
+        float avg = (a + b) / 2;
+        float ax = func.evaluateAt(a);
+        float bx = func.evaluateAt(b);
+        float avgx = func.evaluateAt(avg);
+
+        return q(func,a,b,ax,avgx,bx);
+    }
+
+    private static float q(IFunction func, float a, float b, float fa, float favg, float fb){
+
+        final float tolerance = 0.001f;
+        float diff = b - a;
+        float h = diff / 2;
+        float avg = (a + b) / 2;
+        float favg1 = func.evaluateAt((a + avg) /2);
+        float favg2 = func.evaluateAt((b + avg) /2);
+        float s1 = (diff / 6) * (fa + 4 * favg + fb);
+        float s2 = (h / 6) * (fa + 4 * favg1 + 2*favg + 4 * favg2 + fb);
+        if(Math.abs(s1 -s2) < tolerance){
+            return s2 + (s2 -s1) / 15;
+        }
+        else{
+            float sp1 = q(func,a,avg,fa,favg1,favg);
+            float sp2 = q(func,avg,b,favg,favg2,fb);
+            return sp1 + sp2;
+        }
+    }
+
+
 
 }

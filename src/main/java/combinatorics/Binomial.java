@@ -1,6 +1,8 @@
 package combinatorics;
 
 
+import java.math.BigInteger;
+
 public class Binomial {
 
 
@@ -24,6 +26,29 @@ public class Binomial {
             coeff *= (n - (k - i));
             if (coeff < 0) throw new RuntimeException("Long integer overflow! "+n+", "+k+",   "+i+"  /  "+coeff);
             coeff /= i;
+        }
+        return coeff;
+    }
+
+    public static BigInteger coefficient(BigInteger n, BigInteger k) {
+
+        if (n.compareTo(BigInteger.ZERO) < 0 || k.compareTo(BigInteger.ZERO) < 0)
+            return BigInteger.ZERO;
+        if (k.compareTo(n) > 0)
+            throw new IllegalArgumentException("second argument cannot be larger than the first argument");
+
+        if (k.compareTo(BigInteger.ZERO) == 0 || k.compareTo(n) == 0)
+            return BigInteger.ONE;
+
+        else if (k.compareTo(BigInteger.ONE) == 0 || k.compareTo(n.subtract(BigInteger.ONE)) == 0)
+            return n;
+
+        if (k.compareTo(n.subtract(k)) > 0) k = n.subtract(k);
+
+        BigInteger coeff = BigInteger.ONE;
+        for (int i = 1; i <= k.intValue(); i++) {
+            coeff = coeff.multiply(n.subtract(k.subtract(new BigInteger(String.valueOf(i)))));
+            coeff = coeff.divide(new BigInteger(String.valueOf(i)));
         }
         return coeff;
     }

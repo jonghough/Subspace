@@ -281,7 +281,7 @@ public class FFT {
         double y1, y2;
         for(int j = 2; j <= (data.length / 2)+1;j++){
             int jn = j - 1;
-            wr = (wtemp = wr)*wpr - wi * wpi + wr;
+            wr = (wtemp = wr) * wpr - wi * wpi + wr;
             wi = wi * wpr + wtemp * wpi + wi;
             y1 = wi * (data[jn] + data[n - jn]);
             y2 = 0.5 * (data[jn] - data[n - jn]);
@@ -289,7 +289,7 @@ public class FFT {
             data[n - jn] = y1 - y2;
         }
         realfft(data,1);
-        //System.out.println("intermediate data[0] is "+data[0]+", data[1] "+data[1]);
+
         data[0] *= 0.5;
         double sum = data[1] = 0;
         for(int j = 1; j <= n - 1; j+=2){
@@ -301,7 +301,7 @@ public class FFT {
     }
 
     /**
-     * Calcualtes sin transform of real valued points in the given
+     * Calculates sin transform of real valued points in the given
      * array. Size of array ms tbe a power of two.
      * @param data
      */

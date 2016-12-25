@@ -128,7 +128,7 @@ public class EllipticCurve {
 	}
 	
 	/**
-	 * reutnr i Modulo N
+	 * returns i Modulo N
 	 * @param i
 	 * @return
 	 */

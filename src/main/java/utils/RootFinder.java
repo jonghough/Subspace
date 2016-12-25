@@ -6,7 +6,6 @@ import java.math.BigInteger;
 /**
  * Static functions for calculating roots and related functions for
  * BigIntegers and BigDecimals.
- * @author Jon Hough
  */
 public class RootFinder {
 

@@ -13,7 +13,7 @@ public class Primorial {
      * <br>
      * Will throw a <code>IllegalArgumentException</code> if the argument is
      * non-positive.
-     * @param n positive integer indiciating the nth prime.
+     * @param n positive integer indicating the nth prime.
      * @return primorial.
      */
     public static BigInteger primorial(int n){

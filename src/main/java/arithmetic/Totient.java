@@ -43,9 +43,7 @@ public class Totient {
 			BigInteger primeVal = (entry.getKey().pow(entry.getValue()))
 					.subtract(entry.getKey().pow(entry.getValue() - 1));
 			prod = prod.multiply(primeVal);
-
 		}
-
 		return prod;
 	}
 }

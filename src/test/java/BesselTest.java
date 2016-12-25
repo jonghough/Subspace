@@ -87,4 +87,12 @@ public class BesselTest {
         double a = Bessel.besselY(3,3.0);
         assertTrue("BesselY(3,3)", Math.abs(a - -0.538541616105) < 0.0001);
     }
+
+    @Test
+    public void test9(){
+        double a = Bessel.besselI(3,5.0);
+       // a = Bessel.besselI0(5.0);
+        System.out.println("a is    "+a);
+        assertTrue("BesselI(3,5)", Math.abs(a - 10.331150169) < 0.0001);
+    }
 }

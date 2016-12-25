@@ -96,4 +96,16 @@ array([ 6.09655000+0.j        , -2.25825574-2.61348195j,
             System.out.println("data realfft  "+f);
         }
     }
+
+    @Test
+    public void testrealfft2(){
+
+
+        double[] data = {0,1,2,3,4,5,6,7};
+        Cpx[] datacpx = realFFTX(data);
+
+        for(Cpx f : datacpx){
+            System.out.println("data realfft  "+f);
+        }
+    }
 }

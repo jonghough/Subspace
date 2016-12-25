@@ -1,6 +1,10 @@
 PartitionsTest.class
 SteinerTripleSystemTest.class
+BinomialDistributionTest.class
+GeometricDistributionTest.class
 EllipticCurveTest.class
+ODETest$1.class
+HypergeometricDistributionTest.class
 BesselTest.class
 FactorTest.class
 SigmaTest.class
@@ -9,6 +13,7 @@ StirlingNumbersTest.class
 BellNumbersTest.class
 BernoulliNumbersTest.class
 CatalanNumbersTest.class
+ODETest$2.class
 ExpTest.class
 PermutationTest.class
 PrimeCountTest.class
@@ -23,6 +28,7 @@ GammaTest.class
 ODETest.class
 RootFinderTest.class
 FFTTest.class
+NormalDistributionTest.class
 SieveTest.class
 ZetaTest.class
 ComplexTest.class

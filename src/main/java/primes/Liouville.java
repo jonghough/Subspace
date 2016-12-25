@@ -7,8 +7,6 @@ import factoring.Factorizor;
 
 /**
  * Liouville's Function and related functions.
- * 
- * @author Jon Hough
  *
  */
 public class Liouville {

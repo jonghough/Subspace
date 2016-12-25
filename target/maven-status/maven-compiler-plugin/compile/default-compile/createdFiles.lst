@@ -2,7 +2,11 @@ numerics/Integration.class
 numerics/IFunction.class
 combinatorics/PermutationsGeneric.class
 numerics/Differentiation.class
+statistics/ContinuousDistribution.class
+primes/ERunnable.class
+statistics/NormalDistribution$1.class
 utils/RootFinder.class
+statistics/UniformContinuousDistribution.class
 ellipticcurves/EllipticCurve.class
 combinatorics/BellNumbers.class
 arithmetic/BernoulliNumbers.class
@@ -10,9 +14,11 @@ arithmetic/Harmonics.class
 arithmetic/Mobius.class
 transcendence/Zeta$Coefficients.class
 ellipticcurves/EllipticCurveException.class
+statistics/ExponentialDistribution.class
 arithmetic/Rational.class
 transcendence/Zeta.class
 factoring/PollardRho.class
+statistics/HypergeometricDistribution.class
 utils/BigUtils.class
 combinatorics/SteinerTripleSystem.class
 factoring/Factorizor$FactorMethod.class
@@ -27,6 +33,7 @@ numerics/IFirstOrderODE.class
 transcendence/Gamma.class
 utils/HashMapBuilder.class
 combinatorics/Binomial.class
+statistics/PoissonDistribution.class
 ellipticcurves/BigEllipticCurve$Point.class
 arithmetic/Totient.class
 combinatorics/Permutations.class
@@ -43,6 +50,7 @@ combinatorics/StirlingNumbers.class
 numerics/ODE.class
 transcendence/Bessel.class
 transcendence/Beta.class
+statistics/NormalDistribution.class
 arithmetic/ContinuedFractions.class
 combinatorics/SteinerTripleSystem$Triple.class
 ellipticcurves/BigEllipticCurve.class
@@ -54,4 +62,5 @@ arithmetic/EulerNumber.class
 ellipticcurves/EllipticCurve$Point.class
 factoring/PollardPMO.class
 arithmetic/Chebyshev.class
+statistics/GammaDistribution.class
 primes/PrimeCount.class

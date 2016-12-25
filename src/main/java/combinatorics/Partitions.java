@@ -129,6 +129,7 @@ public class Partitions {
 
     }
 
+
     public static int enumeratePartitions(int m, int n) {
         HashMap<PartitionPair, Integer> hashMap = new HashMap<>();
         hashMap.put(new PartitionPair(0,0), 1);
@@ -149,9 +150,21 @@ public class Partitions {
         }
 
         return hashMap.get(new PartitionPair(m,n));
-
     }
 
+    /**
+     * Gets the lexicographic rank of the partition, where the partition is a
+     * partition of the number <i>m</i> with <i>n</i> parts.<br>
+     *     For example:<br>
+     *         the partition (of 17) given as <i>{5,5,4,2,1}</i><br>
+     *         We can find the rank by:<br>
+     *               <code>Partitions.lexicographicRank(17,5,p);</code><br>
+     *       which should be <code>28</code>.
+     * @param m
+     * @param n
+     * @param partition
+     * @return
+     */
     public static int lexicographicRank(int m, int n, ArrayList<Integer> partition){
 
         ArrayList<Integer> parts = new ArrayList<>();

@@ -1,7 +1,15 @@
 package primes;
 
-import java.util.ArrayList;
+import numerics.Integration;
 
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.concurrent.*;
+
+
+/**
+ * Implementation of various algorithms used for sieving prime numbers.
+ */
 public class Sieve {
 
 	/**
@@ -30,6 +38,36 @@ public class Sieve {
 				j++;
 			}
 		}
+		ArrayList<Integer> result = new ArrayList<Integer>();
+		for (int i = 2; i < N; i++) {
+			if (primes.get(i) == true)
+				result.add(i);
+		}
+		return result;
+	}
+
+
+	public static ArrayList<Integer> eratosthenesParallel(Integer N, int threads){
+		ExecutorService service = Executors.newFixedThreadPool(threads);
+		ArrayList<Boolean> primes = new ArrayList<Boolean>(N);
+		// integer
+		final int sqrt = (int) Math.sqrt((double) N) + 1;
+		for (int i = 0; i < N; i++) {
+			primes.add(true);
+		}
+		for (int i = 2; i < sqrt; i++) {
+			BigInteger bi = new BigInteger(String.valueOf(i));
+			if(bi.isProbablePrime(100)){
+				service.execute(new ERunnable(primes, i));
+			}
+		}
+		service.shutdown();
+		try {
+			service.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
+		} catch (InterruptedException e) {
+			//nothing
+		}
+
 		ArrayList<Integer> result = new ArrayList<Integer>();
 		for (int i = 2; i < N; i++) {
 			if (primes.get(i) == true)
@@ -92,4 +130,30 @@ public class Sieve {
 		return result;
 	}
 
+}
+
+
+/**
+ * Runnable class
+ */
+class ERunnable implements Runnable{
+
+	private ArrayList<Boolean> nums;
+
+	private Integer prime = 2;
+
+	public ERunnable(ArrayList<Boolean> a, int p){
+		nums = a;
+		prime = p;
+	}
+
+	@Override
+	public void run() {
+		int j = 2;
+		while(prime*j < nums.size()){
+
+			nums.set(prime*j , false);
+			j++;
+		}
+	}
 }

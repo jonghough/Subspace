@@ -3,12 +3,15 @@
 /Users/jp20151/IdeaProjects/Subspace/src/test/java/SteinerTripleSystemTest.java
 /Users/jp20151/IdeaProjects/Subspace/src/test/java/PartitionsTest.java
 /Users/jp20151/IdeaProjects/Subspace/src/test/java/ODETest.java
+/Users/jp20151/IdeaProjects/Subspace/src/test/java/HypergeometricDistributionTest.java
 /Users/jp20151/IdeaProjects/Subspace/src/test/java/ComplexTest.java
 /Users/jp20151/IdeaProjects/Subspace/src/test/java/PrimeCountTest.java
 /Users/jp20151/IdeaProjects/Subspace/src/test/java/TotientTest.java
 /Users/jp20151/IdeaProjects/Subspace/src/test/java/CatalanNumbersTest.java
 /Users/jp20151/IdeaProjects/Subspace/src/test/java/RootFinderTest.java
 /Users/jp20151/IdeaProjects/Subspace/src/test/java/BinomialTest.java
+/Users/jp20151/IdeaProjects/Subspace/src/test/java/BinomialDistributionTest.java
+/Users/jp20151/IdeaProjects/Subspace/src/test/java/GeometricDistributionTest.java
 /Users/jp20151/IdeaProjects/Subspace/src/test/java/PrimorialTest.java
 /Users/jp20151/IdeaProjects/Subspace/src/test/java/EulerNumberTest.java
 /Users/jp20151/IdeaProjects/Subspace/src/test/java/PermutationTest.java
@@ -20,6 +23,7 @@
 /Users/jp20151/IdeaProjects/Subspace/src/test/java/SineTransformTest.java
 /Users/jp20151/IdeaProjects/Subspace/src/test/java/UtilsTest.java
 /Users/jp20151/IdeaProjects/Subspace/src/test/java/ZetaTest.java
+/Users/jp20151/IdeaProjects/Subspace/src/test/java/NormalDistributionTest.java
 /Users/jp20151/IdeaProjects/Subspace/src/test/java/IntegrationTest.java
 /Users/jp20151/IdeaProjects/Subspace/src/test/java/EllipticCurveTest.java
 /Users/jp20151/IdeaProjects/Subspace/src/test/java/ExpTest.java
