@@ -28,4 +28,10 @@ public class RootFinderTest {
         BigDecimal root = RootFinder.squareRoot(new BigDecimal("109450.5"), 20);
         assertTrue(root.subtract(new BigDecimal("330.833")).abs().compareTo(new BigDecimal("0.0001")) < 0);
     }
+
+    @Test
+    public void test5(){
+        BigDecimal root = RootFinder.squareRoot(new BigDecimal("163"), 20);
+        assertTrue(root.subtract(new BigDecimal("12.7671453348")).abs().compareTo(new BigDecimal("0.0001")) < 0);
+    }
 }

@@ -50,6 +50,7 @@ public class ComplexTest {
         Cpx b = new Cpx(0.2, 1.5);
 
         Cpx c = a.pow(b);
-        System.out.println("coplex number afte rpower ===>    "+c.toString());
+        assertTrue(Math.abs(c.real() - -0.29060063574027406) < 0.00001);
+        assertTrue(Math.abs(c.imaginary() - 0.08695537451613247) < 0.00001);
     }
 }

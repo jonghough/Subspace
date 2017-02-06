@@ -25,7 +25,6 @@ public class Partitions {
      * @return ArrayList of Partitions.
      */
     public static ArrayList<ArrayList<Integer>> generatePartitions(int N) {
-        //return the recursive generation.
         return generatePartitions(N, 1);
     }
 
@@ -260,7 +259,9 @@ public class Partitions {
 
 }
 
-
+/**
+ * Helper class for enumerating partitions.
+ */
 class PartitionPair{
     public final int m;
     public final int n;

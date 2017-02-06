@@ -4,7 +4,9 @@ package arithmetic;
 import java.util.ArrayList;
 
 /**
- * Bernoulli Number functions.
+ * Collection of functions related to <i>Bernoulli Numbers</i>, which are
+ * defined ad the coefficients of the Taylor expansion of <br>
+ *     <i> t/(e^t -1) = 1 + t/2 + t^2/6 - t^4/30 + ...</i>
  */
 public class BernoulliNumbers {
 
@@ -46,7 +48,7 @@ public class BernoulliNumbers {
     }
 
     /**
-     * Calculates the nth <i>Bernoulli Number</i> and returns it a s a <code>Rational</code>
+     * Calculates the nth <i>Bernoulli Number</i> and returns it as a <code>Rational</code>
      * object.
      * @param n
      * @return

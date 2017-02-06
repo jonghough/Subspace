@@ -217,9 +217,24 @@ public class BigEllipticCurve {
      * by using <i>Lenstra's</i> factorization algorithm. If none can be
      * found the algorithm will fallback to <i>Rho factorization</i>.
      * @param N
-     * @return
+     * @return Prime factor of N
      */
     public static BigInteger factorLenstra(BigInteger N) {
+        long randValue = System.currentTimeMillis();
+        return factorLenstra(N, randValue);
+    }
+
+    /**
+     * Returns a single prime factor of the positive integer, <i>N</i>,
+     * by using <i>Lenstra's</i> factorization algorithm. If none can be
+     * found the algorithm will fallback to <i>Rho factorization</i>. The
+     * seed, used for initializing a random elliptic curve is given as a
+     * parameter.
+     * @param N BigInteger
+     * @param seed seed for random values
+     * @return Prime factor of N
+     */
+    public static BigInteger factorLenstra(BigInteger N, long seed) {
         if(N.isProbablePrime(100))
             return N;
 
@@ -229,7 +244,7 @@ public class BigEllipticCurve {
         if (N.mod(THREE).compareTo(BigInteger.ZERO) == 0)
             return THREE;
         // choose random values
-        final Random random = new Random(System.currentTimeMillis());
+        final Random random = new Random(seed);
         int k = 100;
         while (k-- > 0) {
             BigInteger x = new BigInteger(18, random).add(BigInteger.ONE).mod(N);

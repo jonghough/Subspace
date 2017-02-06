@@ -6,22 +6,22 @@ import java.math.BigInteger;
 
 /**
  * Functions for calculating exponents.
- * 
- * @author Jon Hough
+ *
  */
 public class Exp {
 
 	/* more precise decimal expansion of e */
 	/* default*/ static final BigDecimal E_PRECISE =
-			new BigDecimal("2.7182818284590452353602874713526624977572470936999595749669676277240766303535475945713821785251664274");
-   
+			new BigDecimal("2.718281828459045235360287471352662497757247093699959574966967627724076630353547594571382178525166427427466391932003059921817413596629043572900334295260595630738132328627943490763233829880753195251019011573834187930702154089149");
+
+    public static final BigDecimal PI_PRECISE =
+            new BigDecimal("3.14159265358979323846264338327950288419716939937510582097494459230781640628620899862803482534211706798214808651328230664709384460955058223172535940812848111745028410270193852110555964462294895493038196");
 	public static final BigInteger TWO = new BigInteger("2");
 
     /**
      * Base 2 log of e (~ 2.71828...)
      */
-    public static final BigDecimal LOG_2_E = new BigDecimal("1.4426950408889634073599246810017822653278448610936510082308932567674020219783415086567401885986328125");
-
+    public static final BigDecimal LOG_2_E = new BigDecimal("1.4426950408889634073599246810018921374266459541529859341354494069311092191811850798855266228935063444969975183096");
     /**
      * Base 2 log of 10
      */
@@ -90,7 +90,7 @@ public class Exp {
     	int i;
     	BigDecimal tot = BigDecimal.ZERO;
     	for(i = 0; i < max; i++){
-    		tot = tot.add(taylorVal(val,i, 100));
+    		tot = tot.add(taylorVal(val,i, 200));
     	}
     	return tot;
     }
@@ -101,7 +101,7 @@ public class Exp {
     	BigDecimal power = exp(val,new BigInteger(String.valueOf(exponent)));
     	
     	try{
-    		BigDecimal res = power.divide(new BigDecimal(factorial(exponent)), scale, BigDecimal.ROUND_HALF_DOWN);
+    		BigDecimal res = power.divide(new BigDecimal(factorial(new BigInteger(String.valueOf(exponent)))), scale, BigDecimal.ROUND_HALF_DOWN);
     		return res;
     	}
     	catch(ArithmeticException e){
@@ -126,6 +126,23 @@ public class Exp {
     	}
     }
 
+    //quick factorial calculator.
+    private static BigInteger factorial(BigInteger n){
+        if(n.compareTo(BigInteger.ZERO) < 0) throw new IllegalArgumentException("Must be non-negative");
+        if(n.compareTo(BigInteger.ZERO) == 0 || n.compareTo(BigInteger.ONE) == 0){
+            return BigInteger.ONE;
+        }
+        else{
+            BigInteger total = BigInteger.ONE;
+            BigInteger x = n;
+            while(x.compareTo(BigInteger.ONE) > 0){
+                total = total.multiply(x);
+                x = x.subtract(BigInteger.ONE);
+            }
+            return total;
+        }
+    }
+
     
     /**
      *  Calculates D^exponent, where D and exponent are both BigDecimals.
@@ -139,7 +156,7 @@ public class Exp {
     	BigDecimal p2 = BigDecimal.ONE;
     	BigDecimal mantissa = exponent.subtract(new BigDecimal(intPart));
 
-    	p2 = taylorExpandExp((mantissa).multiply(ln(D, 200)), 100);
+    	p2 = taylorExpandExp((mantissa).multiply(ln(D, 300)), 100);
     	p1 = p1.multiply(p2);
     	return p1;
     }

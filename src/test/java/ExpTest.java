@@ -1,5 +1,7 @@
 import org.junit.Test;
 import transcendence.Exp;
+import utils.RootFinder;
+
 import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
@@ -48,6 +50,15 @@ public class ExpTest {
         BigDecimal d1 = Exp.exp(new BigDecimal("-10"));
 
         assertTrue((d1.subtract(new BigDecimal("4.53999E-5")).abs().compareTo(new BigDecimal(0.001)) < 0));
+
+    }
+
+    @Test
+    public void test6(){
+
+        // e^ (163^0.5 * pi) ~ 262_537_412_640_768_744
+        BigDecimal d1 = Exp.exp(RootFinder.squareRoot(new BigDecimal(163), 100).multiply(Exp.PI_PRECISE));
+        assertTrue((d1.subtract(new BigDecimal("262537412640768744")).abs().compareTo(new BigDecimal(0.00001)) < 0));
 
     }
 }

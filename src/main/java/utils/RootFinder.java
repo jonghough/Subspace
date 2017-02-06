@@ -10,7 +10,7 @@ import java.math.BigInteger;
 public class RootFinder {
 
 	private static BigDecimal ZERO = new BigDecimal("0");
-	private static BigDecimal EPSILON = new BigDecimal("0.000001");
+	private static BigDecimal EPSILON = new BigDecimal("0.000000001");
 	private static BigDecimal TWO = new BigDecimal("2");
 
 	/**
