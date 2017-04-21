@@ -292,11 +292,11 @@ public class FFT {
 
         data[0] *= 0.5;
         double sum = data[1] = 0;
-        for(int j = 1; j <= n - 1; j+=2){
+        for(int j = 0; j < n; j+=2){
 
-            sum += data[j - 1];
-            data[j-1] = data[j];
-            data[j] = sum;
+            sum += data[j];
+            data[j] = data[j+1];
+            data[j+1] = sum;
         }
     }
 
@@ -325,9 +325,9 @@ public class FFT {
         realfft(data,1);
         data[0] *= 0.5;
         double sum = 0;
-        for(int j = 1; j <= n - 1; j+=2){
+        for(int j = 3; j <= n - 1; j+=2){
             sum += data[j - 1];
-            data[j-1] = data[j];
+            //data[j-1] = data[j];
             data[j] = sum;
         }
     }

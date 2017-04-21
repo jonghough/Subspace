@@ -1,6 +1,8 @@
 package statistics;
 
 
+import java.util.ArrayList;
+
 public class UniformDistribution implements DiscreteDistribution {
 
     private final int mLower;
@@ -12,6 +14,17 @@ public class UniformDistribution implements DiscreteDistribution {
         mHigher = higher;
         prob = 1.0 / (higher - lower);
     }
+
+    @Override
+    public ArrayList<Double> mode() {
+        return new ArrayList<>(); //no mode
+    }
+
+    @Override
+    public double median() {
+        return expected();
+    }
+
     @Override
     public double expected() {
         return 0.5 * (mLower + mHigher);

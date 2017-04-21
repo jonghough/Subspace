@@ -3,6 +3,9 @@ package statistics;
 
 import transcendence.Gamma;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 /**
  *
  */
@@ -13,6 +16,19 @@ public class PoissonDistribution implements DiscreteDistribution {
     public PoissonDistribution(double lambda){
         if(lambda < 0) throw new IllegalArgumentException("Argument must be non-negative.");
         mLambda = lambda;
+    }
+
+    @Override
+    public ArrayList<Double> mode() {
+        ArrayList<Double> modes = new ArrayList<>();
+        modes.add(Math.ceil(mLambda) - 1);
+        modes.add(Math.floor(mLambda));
+        return modes;
+    }
+
+    @Override
+    public double median() {
+        return Math.floor(mLambda + 0.333333 - 0.02 / mLambda);
     }
 
     @Override

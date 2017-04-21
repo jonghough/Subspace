@@ -299,29 +299,32 @@ public class Bessel {
 
     /**
      * Modified <i>Bessel Function</i> for real <code>x</code>, and integer <code>n</code>.
+     *
      * @param n
      * @param x
      * @return
      */
-    public static double besselI(int n, double x){
-        if(n < 2) { return 0.0;}
-        if(x == 0.0)
+    public static double besselI(int n, double x) {
+        if (n < 2) {
             return 0.0;
-        else{
+        }
+        if (x == 0.0)
+            return 0.0;
+        else {
             double tox = 2.0 / Math.abs(x);
             double bip = 0.0, ans = 0.0;
             double bi = 1.0;
 
-            for(int j = 2 * (n + (int)Math.sqrt(40.0 * n)); j > 0;j--){
+            for (int j = 2 * (n + (int) Math.sqrt(40.0 * n)); j > 0; j--) {
                 double bim = bip + j * tox * bi;
                 bip = bi;
                 bi = bim;
-                if(Math.abs(bi) > 1E8){
+                if (Math.abs(bi) > 1E8) {
                     ans *= 1E-8;
                     bi *= 1E-8;
                     bip *= 1E-8;
                 }
-                if(j == n) ans = bip;
+                if (j == n) ans = bip;
             }
             ans *= besselI0(x) / bi;
             return x < 0.0 && (n == 1) ? -ans : ans;

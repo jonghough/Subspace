@@ -57,4 +57,11 @@ public class CatalanNumbersTest {
         long rank = new CatalanNumber(4).catalanRank(new boolean[]{false, true, false, true, false, true, false, true});
         assertEquals(13, rank);
     }
+
+    @Test
+    public void test10(){
+        // test rank
+        long rank = new CatalanNumber(4).catalanRank(new int[]{0, 1, 0, 1, 0, 1, 0, 1});
+        assertEquals(13, rank);
+    }
 }

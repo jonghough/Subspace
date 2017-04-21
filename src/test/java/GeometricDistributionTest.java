@@ -19,4 +19,11 @@ public class GeometricDistributionTest {
         assertTrue("X~Geo(0.33), P(X = 14) = 0.001809199", Math.abs(p - 0.00180920) < 0.0001);
     }
 
+
+    @Test(expected=IllegalArgumentException.class)
+    public void test3(){
+        // Should throw an exception.
+        GeometricDistribution gd = new GeometricDistribution(0.33);
+        double p = gd.pmf(-1);
+    }
 }

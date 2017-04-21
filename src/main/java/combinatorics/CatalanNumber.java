@@ -89,4 +89,38 @@ public class CatalanNumber {
         }
         return lower;
     }
+
+    /**
+     * For this instance's <i>Catalan number</i>, this method will calculate the catalan rank
+     * of a given permutation.
+     * <br>
+     * For example, if <br><br>
+     *     <code>
+     *         catalanNumbers cn = new CatalanNumbers(4);
+     *     </code><br>
+     *     <code>
+     *         cn.catalanRank(new boolean[]{0, 0, 0, 0, 1, 1, 1, 1});
+     *     </code><br>
+     *     will return <br>
+     *         0, because this is the rank of the <i>Catalan family</i> (00001111), represented by the given int array.
+     * @param catalanSet
+     * @return the rank of the given boolean array.
+     */
+    public int catalanRank(int[] catalanSet){
+        if (catalanSet.length != 2 * mIndex) throw new IllegalArgumentException("Array length is not correct value.");
+        int f = 0;
+        int lower = 0;
+        int i = 0;
+        while(i < 2 * mIndex - 2){
+            if(catalanSet[i] == 0) {
+                f++;
+            }
+            else{
+                lower = lower + M(i + 1, f + 1);
+                f--;
+            }
+            i++;
+        }
+        return lower;
+    }
 }

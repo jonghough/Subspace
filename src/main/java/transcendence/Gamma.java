@@ -234,4 +234,7 @@ public class Gamma {
 		BigDecimal power = Exp.BigExp(D.divide(Exp.E_PRECISE, 20, BigDecimal.ROUND_HALF_DOWN),D);
 		return coefficient.multiply(power);
 	}
+
+
+
 }

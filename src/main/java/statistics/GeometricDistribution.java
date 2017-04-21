@@ -1,5 +1,7 @@
 package statistics;
 
+import java.util.ArrayList;
+
 /**
  * <i>Geometric Distribution</i> measures the probability of success
  * after <i>k</i> trials, where each trial has independent probability
@@ -12,6 +14,20 @@ public class GeometricDistribution implements DiscreteDistribution {
     public GeometricDistribution(double p){
         P = p < 0 ? 0 : p > 1.0 ? 1.0 : p;
     }
+
+    @Override
+    public ArrayList<Double> mode() {
+        ArrayList<Double> modes = new ArrayList<Double>();
+        modes.add(1.0);
+        return modes;
+    }
+
+    @Override
+    public double median() {
+        double v = Math.ceil(-1.0 / Math.log(1-P)/ Math.log(2));
+        return v;
+    }
+
     @Override
     public double expected() {
         return 1.0 / P;

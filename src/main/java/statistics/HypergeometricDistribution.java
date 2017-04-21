@@ -6,6 +6,7 @@ import combinatorics.Binomial;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 
 
 /**
@@ -22,6 +23,19 @@ public class HypergeometricDistribution implements DiscreteDistribution {
         mNum = N;
         mSuccess = s;
         mTrials = trials;
+    }
+
+    @Override
+    public ArrayList<Double> mode() {
+        ArrayList<Double> modes = new ArrayList<>();
+        double v = Math.floor((mNum + 1)* (mSuccess + 1) / (mNum + 2));
+        modes.add(v);
+        return modes;
+    }
+
+    @Override
+    public double median() {
+        return -1;
     }
 
     @Override

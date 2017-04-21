@@ -1,6 +1,7 @@
 package statistics;
 
 
+import transcendence.Digamma;
 import transcendence.Gamma;
 
 import java.math.BigDecimal;
@@ -10,10 +11,15 @@ public class GammaDistribution implements ContinuousDistribution {
     private int mShape;
     private double mRate;
 
-    public GammaDistribution(int shape, int rate){
+    public GammaDistribution(int shape, int rate) {
+        if (mShape <= 0)
+            throw new IllegalArgumentException(String.format("Shape argument must be positive. Value given: %s.", mShape));
+        if (mRate <= 0)
+            throw new IllegalArgumentException(String.format("Rate argument must be positive. Value given: %s.", mRate));
         mShape = shape;
         mRate = rate;
     }
+
     @Override
     public double expected() {
         return mShape * 1.0 / mRate;
@@ -46,6 +52,6 @@ public class GammaDistribution implements ContinuousDistribution {
 
     @Override
     public double entropy() {
-        return 0;
+        return mShape + Math.log(1.0 / mRate) + Math.log(Gamma.factorial32(mShape)) + (1 - mShape) * Digamma.digamma(mShape);
     }
 }
