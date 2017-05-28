@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Primorial {
 
     /**
-     * Calcultes the <i>nth primorial</i>. Which is the multiplication
+     * Calculates the <i>nth primorial</i>. Which is the multiplication
      * of the first <i>n</i> prime numbers, where prime index begins at 1.
      * (i.e prime number 1 is 2).
      * <br>

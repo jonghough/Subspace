@@ -105,7 +105,7 @@ array([ 6.09655000+0.j        , -2.25825574-2.61348195j,
         Cpx[] datacpx = realFFTX(data);
 
         for(Cpx f : datacpx){
-            System.out.println("data realfft  "+f);
+           // System.out.println("data realfft  "+f);
         }
     }
 }

@@ -15,7 +15,7 @@ public class FFT {
     /**
      * Implementation of <i>Fast Fourier Transform</i>, using decimation in time.
      * Algorithm is from <br>
-     * <i>Numerical Recipes in C : The Art of Scientifc Computing, p.~ 508.</i>
+     * <i>Numerical Recipes in C : The Art of Scientific Computing, p.~ 508.</i>
      *
      * @param data
      * @param isign
@@ -287,6 +287,9 @@ public class FFT {
             y2 = 0.5 * (data[jn] - data[n - jn]);
             data[jn] = y1 + y2;
             data[n - jn] = y1 - y2;
+        }
+        for(int g = 0; g < data.length;g++){
+            System.out.print(data[g]+", ");
         }
         realfft(data,1);
 
