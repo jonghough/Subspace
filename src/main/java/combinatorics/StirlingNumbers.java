@@ -59,6 +59,12 @@ public class StirlingNumbers {
         return stirlingMap.get(generateHash(m, n));
     }
 
+    /**
+     *
+     * @param a
+     * @param b
+     * @return
+     */
     private static int generateHash(int a, int b) {
         int i = a * 31627;
         int j = (b << 1) * 1299721;

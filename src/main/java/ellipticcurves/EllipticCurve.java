@@ -10,6 +10,7 @@ import java.util.Map.Entry;
 
 import arithmetic.JacobiSymbol;
 import arithmetic.Totient;
+import utils.BigUtils;
 
 /**
  * Elliptic curve over finite fields.
@@ -155,7 +156,7 @@ public class EllipticCurve {
 			if (a.x == b.x && a.y == b.y) {
 				int denom = m(2 * a.y );
 				// inverse of the denominator modulo N
-				int denomInv = powerMod(m(denom), phi - 1, N);
+				int denomInv = BigUtils.modInverse(denom, N);
 				lambda = m((3 * a.x * a.x + A) * denomInv);
 			} else {
 				lambda = m(b.y - a.y);

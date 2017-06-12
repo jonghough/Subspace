@@ -13,6 +13,15 @@ public class BigUtils {
         return n.subtract(BigInteger.ONE);
     }
 
+    /**
+     * Calculates the inverse of <i>k</i> modulo <i>n</i>, using the
+     * <i>extends euclidean algorithm</i>, if such an inverse exists.
+     * If an inverse doesn't exist (e.g. not coprime k,n) then an
+     * <code>ArithmeticException</code> will be thrown.
+     * @param k integer value to find inverse of.
+     * @param n integer value
+     * @return invers eof k modulo n.
+     */
     public static int modInverse(int k, int n){
         int t = 0;
         int nt = 1;

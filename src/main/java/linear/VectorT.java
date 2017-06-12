@@ -6,7 +6,7 @@ package linear;
 public class VectorT extends Matrix {
 
     public VectorT(int c, double[] data) {
-        super(c, 1, data);
+        super(1,c, data);
     }
 
     public VectorT(Vector v){
@@ -15,5 +15,10 @@ public class VectorT extends Matrix {
 
     public static Vector zero(int c){
         return new Vector(c,new double[c]);
+    }
+
+    @Override
+    public Vector transpose(){
+        return new Vector(mCols,mData);
     }
 }

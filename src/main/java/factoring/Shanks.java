@@ -10,6 +10,7 @@ import java.util.Random;
 
 /**
  * Implementation of Shanks Square Forms factorization algorithm.
+ * Incomplete
  */
 public class Shanks {
     private int multipliers[] = {
@@ -20,7 +21,7 @@ public class Shanks {
             61, 62, 65, 66, 67, 69, 70, 71, 73,
             74, 77, 78, 79, 82, 83, 85, 86, 87,
             89, 91, 93, 94, 95, 97, 101, 102, 103,
-            105, 106, 107, 109, 110, 111, 113
+            105, 106, 107, 109, 110, 111, 113,112,114,8,9,12,15
     };
 
     private Random random = new Random();

@@ -1,12 +1,15 @@
 package linear;
 
 
+/**
+ * Matrix class.
+ */
 public class Matrix {
 
-    private double[] mData;
-    private int mCols, mRows;
+    protected double[] mData;
+    protected int mCols, mRows;
 
-    public Matrix(int c, int r, double[] data) {
+    public Matrix(int r, int c, double[] data) {
         if (data.length != c * r)
             throw new IllegalArgumentException("Number of data elements must match dimensions of matrix.");
 
@@ -17,27 +20,45 @@ public class Matrix {
     }
 
 
-    public Matrix(int c, int r) {
+    /**
+     * Instantiate a matrix of <i>r</i> rows and <i>c</i> columns, and fill it with
+     * elements of the given <i>r*c</i> length array.
+     * @param r number of rows
+     * @param c number of columns
+     */
+    public Matrix(int r, int c) {
         this(c, r, new double[c * r]);
     }
 
+    /**
+     * Copies the matrix and returns the copy object.
+     * @return
+     */
     public Matrix copy() {
         double[] d = new double[mData.length];
         for (int i = 0; i < d.length; i++) {
             d[i] = mData[i];
         }
-        return new Matrix(mCols, mRows, d);
+        return new Matrix(mRows, mCols, d);
     }
 
+    /**
+     * Retuns a 1-dimensional array contianing the elements of the matrix.
+     * @return copy of the matrix contents
+     */
     public double[] flatten() {
-        double[] flat = new double[cols() * rows()];
-        for (int i = 0; i < cols() * rows(); i++) {
-            flat[i] = mData[i];
-        }
-        return flat;
+        return mData.clone();
     }
 
-    public static Matrix fill(int c, int r, double v){
+    /**
+     * Creates a <i>rxc</i> matrix where each element is given the
+     * value <i>v</i>.
+     * @param r number of rows
+     * @param c number of columns
+     * @param v value to fill
+     * @return matrix of shape <i>rxc</i>
+     */
+    public static Matrix fill(int r, int c, double v){
         double[] d = new double[c*r];
         for(int i = 0; i < c*r;i++){
             d[i] = v;
@@ -45,41 +66,74 @@ public class Matrix {
         return new Matrix(c,r,d);
     }
 
+    /**
+     *
+     * @param row
+     * @return
+     */
     public Matrix getRow(int row){
         double[] r = new double[cols()];
         for(int i = 0; i < cols(); i++){
-            r[i] = at(i,row);
+            r[i] = at(row,i);
         }
-        return new Matrix(cols(),1,r);
+        return new Matrix(rows(),1,r);
     }
 
+    /**
+     *
+     * @param col
+     * @return
+     */
     public Matrix getColumn(int col){
         double[] r = new double[rows()];
         for(int i = 0; i < cols(); i++){
-            r[i] = at(col,i);
+            r[i] = at(i, col);
         }
-        return new Matrix(1, rows(),r);
+        return new Matrix(1, cols(),r);
     }
 
-
+    /**
+     *
+     * @return
+     */
     public int cols() {
         return mCols;
     }
 
+    /**
+     *
+     * @return
+     */
     public int rows() {
         return mRows;
     }
 
+    /**
+     *
+     * @return
+     */
     public String shapeStr() {
-        return "(" + mCols + ", " + mRows + ")";
+        return "(" + mRows + ", " + mCols + ")";
     }
 
-    public double at(int col, int row) {
-        return mData[row + col * mRows];
+    /**
+     *
+     * @param row
+     * @param col
+     * @return
+     */
+    public double at(int row, int col) {
+        return mData[col + row * mCols];
     }
 
-    public void setAt(int col, int row, double value) {
-        mData[row + col * mRows] = value;
+    /**
+     *
+     * @param row
+     * @param col
+     * @param value
+     */
+    public void setAt(int row, int col, double value) {
+        mData[col + row * mCols] = value;
     }
 
     public static Matrix identity(int d) {
@@ -90,20 +144,42 @@ public class Matrix {
         return new Matrix(d, d, data);
     }
 
-    public Matrix add(Matrix L, Matrix R) {
+    /**
+     * In place element-wise scalar multiplication.
+     * @param d double to multiply each element by.
+     */
+    public void mul(double d){
+        for(int i = 0; i < mData.length;i++){
+            mData[i] *= d;
+        }
+    }
+
+    /**
+     *
+     * @param R
+     * @return
+     */
+    public Matrix add(Matrix R) {
+        Matrix L = this;
         if (L.rows() != R.rows() || L.cols() != R.cols()) {
             throw new IllegalArgumentException("Cannot add two matrices of different shapes.");
         }
         double[] data = new double[L.rows() * L.cols()];
-        for (int i = 0; i < L.rows(); i++) {
-            for (int j = 0; j < L.cols(); j++) {
-                data[i + j * L.rows()] = L.at(i, j) + R.at(i, j);
+        for (int i = 0; i < L.cols(); i++) {
+            for (int j = 0; j < L.rows(); j++) {
+                data[j + i * L.cols()] = L.at(i, j) + R.at(i, j);
             }
         }
-        return new Matrix(L.cols(), L.rows(), data);
+        return new Matrix(L.rows(), L.cols(), data);
     }
 
-    public Matrix sub(Matrix L, Matrix R) {
+    /**
+     *
+     * @param R
+     * @return
+     */
+    public Matrix sub( Matrix R) {
+        Matrix L = this;
         if (L.rows() != R.rows() || L.cols() != R.cols()) {
             throw new IllegalArgumentException("Cannot subtract with two matrices of different shapes.");
         }
@@ -113,10 +189,16 @@ public class Matrix {
                 data[i + j * L.rows()] = L.at(i, j) - R.at(i, j);
             }
         }
-        return new Matrix(L.cols(), L.rows(), data);
+        return new Matrix(L.rows(), L.cols(), data);
     }
 
-    public Matrix mul(Matrix L, Matrix R) {
+    /**
+     *
+     * @param R
+     * @return
+     */
+    public Matrix mul(Matrix R) {
+        Matrix L = this;
         if (L.rows() != R.rows() || L.cols() != R.cols()) {
             throw new IllegalArgumentException("Cannot multiply with two matrices of different shapes.");
         }
@@ -126,10 +208,17 @@ public class Matrix {
                 data[i + j * L.rows()] = L.at(i, j) * R.at(i, j);
             }
         }
-        return new Matrix(L.cols(), L.rows(), data);
+        return new Matrix(L.rows(), L.cols(), data);
     }
 
-    public Matrix div(Matrix L, Matrix R, boolean allowDBZ) {
+    /**
+     *
+     * @param R
+     * @param allowDBZ
+     * @return
+     */
+    public Matrix div(Matrix R, boolean allowDBZ) {
+        Matrix L = this;
         if (L.rows() != R.rows() || L.cols() != R.cols()) {
             throw new IllegalArgumentException("Cannot divide with two matrices of different shapes.");
         }
@@ -163,7 +252,7 @@ public class Matrix {
             }
         }
 
-        return new Matrix(L.cols(), L.rows(), data);
+        return new Matrix(L.rows(), L.cols(), data);
     }
 
 
@@ -175,10 +264,10 @@ public class Matrix {
      * @return
      */
     public static Matrix matMul(Matrix L, Matrix R) {
-        if (L.rows() != R.cols())
+        if (L.cols() != R.rows())
             throw new IllegalArgumentException("Matrix multiplication fail. Cannot multiply matrix of shape" +
                     L.shapeStr() + " with matrix of shape " + R.shapeStr() + ".");
-        double[] data = new double[L.cols() * R.rows()];
+        double[] data = new double[L.rows() * R.cols()];
         for (int i = 0; i < L.rows(); i++) {
             for (int j = 0; j < R.cols(); j++) {
                 double v = 0;
@@ -190,9 +279,13 @@ public class Matrix {
             }
         }
 
-        return new Matrix(L.cols(), R.rows(), data);
+        return new Matrix(L.rows(), R.cols(), data);
     }
 
+    /**
+     *
+     * @return
+     */
     private double diagMul(){
         if(rows() != cols()) throw new MatrixAlgorithmException("Cannot multiply along diagonal of non-square matrix.");
         double prod = 1;
@@ -202,6 +295,10 @@ public class Matrix {
         return prod;
     }
 
+    /**
+     *
+     * @return
+     */
     private double trace(){
         if(rows() != cols()) throw new MatrixAlgorithmException("Cannot calculate trace of non-square matrix.");
         double tr = 0;
@@ -211,20 +308,25 @@ public class Matrix {
         return tr;
     }
 
+    /**
+     *
+     * @return
+     */
     public double det(){
         Matrix[] lup = lu();
         Matrix L = lup[0];
         Matrix U = lup[1];
         double d = L.diagMul() * U.diagMul();
-        System.out.println("DET IS "+d);
+        if(d != d) return 0;
         return d;
     }
 
     /**
-     * @param M
+     *
      * @return
      */
-    public static Matrix transpose(Matrix M) {
+    public  Matrix transpose() {
+        Matrix M = copy();
         double[] data = new double[M.rows() * M.cols()];
         for (int i = 0; i < M.cols(); i++) {
             for (int j = 0; j < M.rows(); j++) {
@@ -234,34 +336,12 @@ public class Matrix {
         return new Matrix(M.rows(), M.cols(), data);
     }
 
-
-    private void rowAdd(int row1, int row2, double val) {
-        for (int i = 0; i < mCols; i++) {
-            setAt(i, row1, at(i, row1) + val * at(i, row2));
-        }
-    }
-
-    private void rowMul(int row, double val) {
-        for (int i = 0; i < mCols; i++) {
-            setAt(i, row, at(i, row) * val);
-        }
-    }
-
-    private void rowSwap(int row1, int row2) {
-
-        for (int i = 0; i < mCols; i++) {
-            double tmp = at(i, row1);
-            setAt(i, row1, at(i, row2));
-            setAt(i, row2, tmp);
-
-        }
-    }
-
-
-
-    private Matrix pivotize() {
+    /**
+     *
+     * @return
+     */
+    private Matrix pivot() {
         int n = rows();
-       // Matrix C = copy();
         Matrix id = identity(n);
 
         for (int i = 0; i < n; i++) {
@@ -285,12 +365,16 @@ public class Matrix {
         return id;
     }
 
+    /**
+     *
+     * @return
+     */
     private Matrix[] lu( ) {
          Matrix A = copy();
         int n = rows();
         Matrix L = new Matrix(n,n);
          Matrix U = new Matrix(n,n);
-         Matrix P = pivotize();
+         Matrix P = pivot();
         Matrix A2 = Matrix.matMul(A,P);
 
         for (int j = 0; j < n; j++) {
@@ -312,25 +396,29 @@ public class Matrix {
             }
         }
 
-        System.out.println("A2: "+A2.print());
-        System.out.println("L: "+L.print());
-        System.out.println("U: "+U.print());
-        System.out.println("P: "+P.print());
-        System.out.println("L*U: "+matMul(L,U).print());
         return new Matrix[]{L, U, P};
     }
 
 
+    /**
+     * Returns the matrix inverse, if this matrix is
+     * invertible.
+     * @return inverse of this instance.
+     */
     public Matrix inverse(){
+
         Matrix[] decomp = lu();
         Matrix LI = invertLowerTriangular(decomp[0]);
         Matrix UI = invertUpperTriangular(decomp[1]);
-
-        System.out.println("LI: "+LI.print());
-        System.out.println("UI: "+UI.print());
-        return matMul(UI,LI);
+        Matrix P = (decomp[2]);
+        return matMul(P, matMul(UI,LI));
     }
 
+    /**
+     *
+     * @param T
+     * @return
+     */
     private static Matrix invertLowerTriangular(Matrix T){
         Matrix C =  T.copy();
         for(int k = 0; k < T.rows();k++){
@@ -347,9 +435,13 @@ public class Matrix {
         return C;
     }
 
+    /**
+     *
+     * @param T
+     * @return
+     */
     private static Matrix invertUpperTriangular(Matrix T){
-        Matrix V = transpose(T);
-        System.out.println("V:  "+V.print());
+        Matrix V = T.transpose();
         Matrix C = V.copy();
         for(int k = 0; k < V.rows();k++){
             C.setAt(k,k, 1.0 / V.at(k,k));
@@ -362,14 +454,18 @@ public class Matrix {
                 C.setAt(i,k,-1.0*m);
             }
         }
-        return transpose(C);
+        return C.transpose();
     }
 
 
+    /**
+     *
+     * @return
+     */
     public String print() {
         String p = "\n";
-        for (int i = 0; i < mCols; i++) {
-            for (int j = 0; j < mRows; j++) {
+        for (int i = 0; i < mRows; i++) {
+            for (int j = 0; j < mCols; j++) {
                 p += "\t" + at(i, j);
             }
             p += "\n";
