@@ -44,4 +44,10 @@ public class SieveTest {
 				.size());
 
 	}
+
+//	@Test
+//	public void testE2() {
+//		assertEquals("Num. primes less than 10~50", 11, Sieve.eratosthenes(10, 50)
+//				.size());
+//	}
 }

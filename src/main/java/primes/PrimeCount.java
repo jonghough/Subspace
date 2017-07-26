@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import utils.BigUtils;
+import utils.PrimeUtils;
 import utils.RootFinder;
 import utils.Settings;
 
@@ -32,20 +33,27 @@ public class PrimeCount {
 			throw new IllegalArgumentException("Argument must be positive.");
 		if (n == 1)
 			return 2;
-		int prime = 2;
 
-		int i = 0, count = 0;
-		i = 1;
-		count = 3; // start at 3
-
-		while (i < n) {
-			if (Primality.isPrime(count)) {
-				prime = count;
-				i++;
-			}
-			count++;
+		int len = PrimeUtils.getPrimesLessThanTenThousand().length;
+		if(n < len){
+			return PrimeUtils.getPrimesLessThanTenThousand()[n-1];
 		}
-		return prime;
+		else {
+			int prime = 2;
+			int i = 0, count = 0;
+			i = 1;
+			count = 3; // start at 3
+
+			while (i < n) {
+				if (Primality.isPrime(count)) {
+					prime = count;
+					i++;
+				}
+				count++;
+			}
+			return prime;
+		}
+
 	}
 
 	public static long calcNthPrime(long n) {
@@ -53,18 +61,25 @@ public class PrimeCount {
 			throw new IllegalArgumentException("Argument must be positive.");
 		if (n == 1)
 			return 2;
-		long prime = 2;
-		long i = 1;
 
-		long count = 3; // start at 3
-		while (i < n) {
-			if (Primality.isPrime(count)) {
-				prime = count;
-				i++;
-			}
-			count++;
+		int len = PrimeUtils.getPrimesLessThanTenThousand().length;
+		if(n < len){
+			return PrimeUtils.getPrimesLessThanTenThousand()[(int)(n-1)];
 		}
-		return prime;
+		else {
+			long prime = 2;
+			long i = 1;
+
+			long count = 3; // start at 3
+			while (i < n) {
+				if (Primality.isPrime(count)) {
+					prime = count;
+					i++;
+				}
+				count++;
+			}
+			return prime;
+		}
 	}
 
 	/**

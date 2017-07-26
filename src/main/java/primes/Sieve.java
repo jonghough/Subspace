@@ -46,6 +46,34 @@ public class Sieve {
         return result;
     }
 
+    public static ArrayList<Integer> eratosthenes(Integer L, Integer N) {
+        if (N <= 1)
+            throw new IllegalArgumentException(
+                    "Integer must be greater than one.");
+
+        ArrayList<Boolean> primes = new ArrayList<Boolean>(N-L);
+        // integer
+        final int sqrt = (int) Math.sqrt((double) N) + 1;
+        final int sqrtL = (int) Math.sqrt((double) L) + 1;
+        for (int i = L; i < N; i++) {
+            primes.add(true);
+        }
+
+        for (int i = sqrtL; i < sqrt; i++) {
+            int j = 0;
+            while (i * i + i * j < N) {
+                System.out.println("flasing  "+(i*i+i*j));
+                primes.set(i * i + i * j-L, false);
+                j++;
+            }
+        }
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        for (int i = 0; i < N-L; i++) {
+            if (primes.get(i) == true)
+                result.add(i+L);
+        }
+        return result;
+    }
 
     public static ArrayList<Integer> eratosthenesParallel(Integer N, int threads) {
         ExecutorService service = Executors.newFixedThreadPool(threads);
